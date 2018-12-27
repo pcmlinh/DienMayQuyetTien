@@ -1,0 +1,92 @@
+﻿@model IEnumerable<DienMayQuyetTien.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Data Table Example
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Product Code</th>
+                        <th>Product Name</th>
+                        <th>SalePrice</th>
+                        <th>OriginPrice</th>
+                        <th>InstallmentPrice</th>
+                        <th>Quantity</th>
+                        <th>Avatar</th>
+                        <th>Status</th>
+                        <th>Product Type ID</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Product Code</th>
+                        <th>Product Name</th>
+                        <th>SalePrice</th>
+                        <th>OriginPrice</th>
+                        <th>InstallmentPrice</th>
+                        <th>Quantity</th>
+                        <th>Avatar</th>
+                        <th>Status</th>
+                        <th>Product Type ID</th>
+                        <th>Options</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SalePrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OriginPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InstallmentPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Quantity)
+                            </td>
+                            <td>
+                                <img src="/Images/@item.Avatar" width="100px" height="150px " /> 
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductType.ProductTypeCode)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+
