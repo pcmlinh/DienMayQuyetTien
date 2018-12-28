@@ -55,7 +55,7 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create2([Bind(Include = "ID,BillID,ProductID,Quantity,SalePrice")] CashBillDetail model)
+        public ActionResult Create2(CashBillDetail model)
         {
             if (ModelState.IsValid)
             {

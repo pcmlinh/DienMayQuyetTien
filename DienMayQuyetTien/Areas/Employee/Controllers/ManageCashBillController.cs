@@ -69,19 +69,19 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,BillCode,CustomerName,PhoneNumber,Address,Date,Shipper,Note,GrandTotal")] CashBill cashBill)
+        public ActionResult Create(CashBill model)
         {
             if (ModelState.IsValid)
             {
                 //db.CashBills.Add(cashBill);
                 //db.SaveChanges();
                 //return RedirectToAction("Index");
-                Session["CashBill"] = cashBill;
+                Session["CashBill"] = model;
             }
 
             if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
             {
-                return View(cashBill);
+                return View(model);
             }
             else
             {
@@ -104,7 +104,7 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
                     foreach (var detail in cashBillDetail)
                     {
                         detail.BillID = cashBill.ID;
-                        detail.CashBill = null;
+                        detail.Product = null;
                         db.CashBillDetails.Add(detail);
                     }
                     db.SaveChanges();
@@ -118,14 +118,14 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
                 {
                     ModelState.AddModelError("", e.Message);
                 }
-            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
-            {
-                return View("Create");
-            }
-            else
-            {
-                return RedirectToAction("Login", "Login", new { area = "" });
-            }
+                if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+                {
+                    return View("Create");
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Login", new { area = "" });
+                }
             
         }
         // GET: Employee/ManageCashBill/Edit/5
