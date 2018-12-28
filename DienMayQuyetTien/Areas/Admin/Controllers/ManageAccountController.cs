@@ -18,7 +18,7 @@ namespace DienMayQuyetTien.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var accounts = db.Accounts.Include(a => a.authority);
-            if (Session["username"] != null && Session["authority"].ToString() == "Quản lí")
+            if (Session["username"] != null && Session["authority"].ToString() == "Kỹ thuật viên")
             {
                 return View(accounts.ToList());
             }
@@ -41,7 +41,7 @@ namespace DienMayQuyetTien.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            if (Session["username"] != null && Session["authority"].ToString() == "Quản lí")
+            if (Session["username"] != null && Session["authority"].ToString() == "Kỹ thuật viên")
             {
                 return View(account);
             }
@@ -56,7 +56,7 @@ namespace DienMayQuyetTien.Areas.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.authorityID = new SelectList(db.authorities, "id", "type");
-            if (Session["username"] != null && Session["authority"].ToString() == "Quản lí")
+            if (Session["username"] != null && Session["authority"].ToString() == "Kỹ thuật viên")
             {
                 return View();
             }
@@ -81,7 +81,7 @@ namespace DienMayQuyetTien.Areas.Admin.Controllers
             }
 
             ViewBag.authorityID = new SelectList(db.authorities, "id", "type", account.authorityID);
-            if (Session["username"] != null && Session["authority"].ToString() == "Quản lí")
+            if (Session["username"] != null && Session["authority"].ToString() == "Kỹ thuật viên")
             {
                 return View(account);
             }
@@ -104,7 +104,7 @@ namespace DienMayQuyetTien.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             ViewBag.authorityID = new SelectList(db.authorities, "id", "type", account.authorityID);
-            if (Session["username"] != null && Session["authority"].ToString() == "Quản lí")
+            if (Session["username"] != null && Session["authority"].ToString() == "Kỹ thuật viên")
             {
                 return View(account);
             }
@@ -128,7 +128,7 @@ namespace DienMayQuyetTien.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.authorityID = new SelectList(db.authorities, "id", "type", account.authorityID);
-            if (Session["username"] != null && Session["authority"].ToString() == "Quản lí")
+            if (Session["username"] != null && Session["authority"].ToString() == "Kỹ thuật viên")
             {
                 return View(account);
             }
@@ -150,7 +150,7 @@ namespace DienMayQuyetTien.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            if (Session["username"] != null && Session["authority"].ToString() == "Quản lí")
+            if (Session["username"] != null && Session["authority"].ToString() == "Kỹ thuật viên")
             {
                 return View(account);
             }

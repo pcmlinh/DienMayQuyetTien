@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using DienMayQuyetTien.Models;
 
-namespace DienMayQuyetTien.Areas.Admin.Controllers
+namespace DienMayQuyetTien.Areas.Employee.Controllers
 {
     public class ManageProductTypeController : Controller
     {
@@ -17,7 +17,7 @@ namespace DienMayQuyetTien.Areas.Admin.Controllers
         // GET: Admin/ManageProductType
         public ActionResult Index()
         {
-            if (Session["username"] != null && Session["authority"].ToString() == "Quản lí")
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
             {
                 return View(db.ProductTypes.ToList());
             }
@@ -40,7 +40,7 @@ namespace DienMayQuyetTien.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            if (Session["username"] != null && Session["authority"].ToString() == "Quản lí")
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
             {
                 return View(productType);
             }
@@ -54,7 +54,7 @@ namespace DienMayQuyetTien.Areas.Admin.Controllers
         // GET: Admin/ManageProductType/Create
         public ActionResult Create()
         {
-            if (Session["username"] != null && Session["authority"].ToString() == "Quản lí")
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
             {
                 return View();
             }
@@ -77,7 +77,7 @@ namespace DienMayQuyetTien.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            if (Session["username"] != null && Session["authority"].ToString() == "Quản lí")
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
             {
                 return View(productType);
             }
@@ -99,7 +99,7 @@ namespace DienMayQuyetTien.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            if (Session["username"] != null && Session["authority"].ToString() == "Quản lí")
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
             {
                 return View(productType);
             }
@@ -122,7 +122,7 @@ namespace DienMayQuyetTien.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            if (Session["username"] != null && Session["authority"].ToString() == "Quản lí")
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
             {
                 return View(productType);
             }
@@ -144,7 +144,7 @@ namespace DienMayQuyetTien.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            if (Session["username"] != null && Session["authority"].ToString() == "Quản lí")
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
             {
                 return View(productType);
             }

@@ -31,15 +31,15 @@ namespace DienMayQuyetTien.Controllers
                 {
                     Session["authority"] = obj.authority.type.ToString();
                     Session["username"] = obj.username.ToString();
-                    if (Session["authority"].ToString() == "Quản lí")
+                    if (Session["authority"].ToString() == "Kỹ thuật viên")
                     {
-                        Session["Admin"] = true;
-                        Session["Employ"] = false;
-                        return RedirectToAction("Index", "ManageProduct", new { Area = "Admin" });
+                        return RedirectToAction("Index", "ManageAccount", new { Area = "Admin" });
                     }
-                    Session["Admin"] = false;
-                    Session["Employ"] = true;
-                    return RedirectToAction("Index", "ManageCashBill", new { Area = "Employee" });
+                    if (Session["authority"].ToString() == "Nhân viên bán hàng")
+                    {
+                        return RedirectToAction("Index", "ManageProduct", new { Area = "Employee" });
+                    }
+                        
                 }
             }
             return View(objUser);

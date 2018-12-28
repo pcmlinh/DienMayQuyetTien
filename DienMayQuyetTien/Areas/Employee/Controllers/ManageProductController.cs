@@ -10,7 +10,7 @@ using DienMayQuyetTien.Models;
 using System.Transactions;
 using System.Data.Entity.Validation;
 
-namespace DienMayQuyetTien.Areas.Admin.Controllers
+namespace DienMayQuyetTien.Areas.Employee.Controllers
 {
     public class ManageProductController : Controller
     {
@@ -20,7 +20,7 @@ namespace DienMayQuyetTien.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var products = db.Products.Include(p => p.ProductType);
-            if (Session["username"]!= null && Session["authority"].ToString()=="Quản lí")
+            if (Session["username"]!= null && Session["authority"].ToString()=="Nhân viên bán hàng")
             {
                 return View(products.ToList());
             }
@@ -42,7 +42,7 @@ namespace DienMayQuyetTien.Areas.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.ProductTypeID = new SelectList(db.ProductTypes, "ID", "ProductTypeName");
-            if (Session["username"] != null && Session["authority"].ToString() == "Quản lí")
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
             {
                 return View();
             }
@@ -86,7 +86,7 @@ namespace DienMayQuyetTien.Areas.Admin.Controllers
             }
 
             ViewBag.ProductTypeID = new SelectList(db.ProductTypes, "ID", "ProductTypeName", model.ProductTypeID);
-            if (Session["username"] != null && Session["authority"].ToString() == "Quản lí")
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
             {
                 return View(model);
             }
@@ -105,7 +105,7 @@ namespace DienMayQuyetTien.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             ViewBag.ProductTypeID = new SelectList(db.ProductTypes, "ID", "ProductTypeName", product.ProductTypeID);
-            if (Session["username"] != null && Session["authority"].ToString() == "Quản lí")
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
             {
                 return View(product);
             }
@@ -147,7 +147,7 @@ namespace DienMayQuyetTien.Areas.Admin.Controllers
                 }
             }
             ViewBag.ProductTypeID = new SelectList(db.ProductTypes, "ID", "ProductTypeCode", model.ProductTypeID);
-            if (Session["username"] != null && Session["authority"].ToString() == "Quản lí")
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
             {
                 return View(model);
             }
@@ -169,7 +169,7 @@ namespace DienMayQuyetTien.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            if (Session["username"] != null && Session["authority"].ToString() == "Quản lí")
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
             {
                 return View(product);
             }
