@@ -1,48 +1,48 @@
 ﻿@model IEnumerable<DienMayQuyetTien.Models.Product>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Quản lí sản phẩm";
     Layout = "~/Areas/Employee/Views/Shared/_EmpLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Quản lí sản phẩm</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "ManageProduct")'"><i class="fa fa-plus"></i> Thêm sản phẩm</button>
 </p>
 <div class="card mb-3">
     <div class="card-header">
-        <i class="fa fa-table"></i> Data Table Example
+        <i class="fa fa-table"></i> Bảng sản phẩm
     </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
+                <thead align="center">
                     <tr>
-                        <th>Product Code</th>
-                        <th>Product Name</th>
-                        <th>SalePrice</th>
-                        <th>OriginPrice</th>
-                        <th>InstallmentPrice</th>
-                        <th>Quantity</th>
-                        <th>Avatar</th>
-                        <th>Status</th>
-                        <th>Product Type ID</th>
-                        <th>Options</th>
+                        <th style="width:20px">Mã sản phẩm</th>
+                        <th style="width:50px">Tên sản phẩm</th>
+                        <th>Giá bán (VNĐ)</th>
+                        <th>Giá gốc (VNĐ)</th>
+                        <th>Giá trả góp (VNĐ)</th>
+                        <th style="width:10px">Số lượng</th>
+                        <th>Hình ảnh</th>
+                        <th>Trạng thái</th>
+                        <th style="width:20px">Loại sản phẩm</th>
+                        <th style="width:70px">Tùy chọn</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Product Code</th>
-                        <th>Product Name</th>
-                        <th>SalePrice</th>
-                        <th>OriginPrice</th>
-                        <th>InstallmentPrice</th>
-                        <th>Quantity</th>
-                        <th>Avatar</th>
-                        <th>Status</th>
-                        <th>Product Type ID</th>
-                        <th>Options</th>
+                        <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá bán (VNĐ)</th>
+                        <th>Giá gốc (VNĐ)</th>
+                        <th>Giá trả góp (VNĐ)</th>
+                        <th>Số lượng</th>
+                        <th>Hình ảnh</th>
+                        <th>Trạng thái</th>
+                        <th>Loại sản phẩm</th>
+                        <th>Tùy chọn</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -56,13 +56,13 @@
                                 @Html.DisplayFor(modelItem => item.ProductName)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.SalePrice)
+                                @String.Format("{0:0,0}",item.SalePrice)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.OriginPrice)
+                                @String.Format("{0:0,0}", item.OriginPrice)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.InstallmentPrice)
+                                @String.Format("{0:0,0}", item.InstallmentPrice)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Quantity)
@@ -77,9 +77,8 @@
                                 @Html.DisplayFor(modelItem => item.ProductType.ProductTypeCode)
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                <button class="btn btn-info" onclick="location.href='@Url.Action("Edit", "ManageProduct", new { id = item.ID })'"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "ManageProduct", new { id = item.ID })'"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
                     }

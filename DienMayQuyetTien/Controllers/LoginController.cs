@@ -30,7 +30,7 @@ namespace DienMayQuyetTien.Controllers
                 if (obj != null)
                 {
                     Session["authority"] = obj.authority.type.ToString();
-                    Session["username"] = obj.username.ToString();
+                    Session["username"] = obj.fullname.ToString();
                     if (Session["authority"].ToString() == "Kỹ thuật viên")
                     {
                         return RedirectToAction("Index", "ManageAccount", new { Area = "Admin" });

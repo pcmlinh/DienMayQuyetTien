@@ -21,7 +21,7 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-        <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+        <a class="navbar-brand" href="index.html"><img src="~/Images/logo.png" width="50px"> Điện máy Quyết Tiến - Nhân viên bán hàng</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -29,25 +29,25 @@
             <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                     <a class="nav-link" href="/Employee/ManageProduct/">
-                        <i class="fa fa-fw fa-dashboard"></i>
+                        <i class="fa fa-fw fa-table"></i>
                         <span class="nav-link-text">Quản lí sản phẩm</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                     <a class="nav-link" href="/Employee/ManageProductType/">
-                        <i class="fa fa-fw fa-dashboard"></i>
+                        <i class="fa fa-fw fa-filter"></i>
                         <span class="nav-link-text">Quản lí loại sản phẩm</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                     <a class="nav-link" href="/Employee/ManageCashBill/">
-                        <i class="fa fa-fw fa-dashboard"></i>
+                        <i class="fa fa-fw fa-usd"></i>
                         <span class="nav-link-text">Quản lí hóa đơn tiền mặt</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
                     <a class="nav-link" href="/Employee/ManageInstallmentBill">
-                        <i class="fa fa-fw fa-area-chart"></i>
+                        <i class="fa fa-fw fa-list-alt"></i>
                         <span class="nav-link-text">Quản lí hóa đơn trả góp</span>
                     </a>
                 </li>
@@ -64,12 +64,12 @@
                 {
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-                            Hé lô @Session["username"]
+                            Chào, @Session["username"]
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("LogOut","Login",new { area = ""})">
-                            <i class="fa fa-fw fa-sign-out"></i>Logout
+                            <i class="fa fa-fw fa-sign-out"></i>Đăng xuất
                         </a>
                     </li>
                 }
@@ -78,12 +78,7 @@
     </nav>
     <div class="content-wrapper">
         <div class="container-fluid">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="#">Dashboard</a>
-                </li>
-                <li class="breadcrumb-item active">My Dashboard</li>
-            </ol>
+            
 
             @RenderBody()
         </div>
