@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using DienMayQuyetTien.Models;
@@ -17,7 +18,15 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
         // GET: Employee/ManageCashBill
         public ActionResult Index()
         {
-            return View(db.CashBills.ToList());
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View(db.CashBills.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
+            
         }
 
         // GET: Employee/ManageCashBill/Details/5
@@ -32,13 +41,27 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
             {
                 return HttpNotFound();
             }
-            return View(cashBill);
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View(cashBill);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
         }
 
         // GET: Employee/ManageCashBill/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View(Session["CashBill"]);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
         }
 
         // POST: Employee/ManageCashBill/Create
@@ -50,14 +73,61 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.CashBills.Add(cashBill);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //db.CashBills.Add(cashBill);
+                //db.SaveChanges();
+                //return RedirectToAction("Index");
+                Session["CashBill"] = cashBill;
             }
 
-            return View(cashBill);
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View(cashBill);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create2()
+        {
+            using (var scope = new TransactionScope())
+                try
+                {
+                    var cashBill = Session["CashBill"] as CashBill;
+                    var cashBillDetail = Session["CashBillDetail"] as List<CashBillDetail>;
 
+                    db.CashBills.Add(cashBill);
+                    db.SaveChanges();
+
+                    foreach (var detail in cashBillDetail)
+                    {
+                        detail.BillID = cashBill.ID;
+                        detail.CashBill = null;
+                        db.CashBillDetails.Add(detail);
+                    }
+                    db.SaveChanges();
+                    scope.Complete();
+
+                    Session["CashBill"] = null;
+                    Session["CashBillDetail"] = null;
+                    return RedirectToAction("Index");
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View("Create");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
+            
+        }
         // GET: Employee/ManageCashBill/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -70,7 +140,14 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
             {
                 return HttpNotFound();
             }
-            return View(cashBill);
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View(cashBill);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
         }
 
         // POST: Employee/ManageCashBill/Edit/5
@@ -86,7 +163,14 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(cashBill);
+            if(Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View(cashBill);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
         }
 
         // GET: Employee/ManageCashBill/Delete/5
@@ -101,7 +185,14 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
             {
                 return HttpNotFound();
             }
-            return View(cashBill);
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View(cashBill);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
         }
 
         // POST: Employee/ManageCashBill/Delete/5

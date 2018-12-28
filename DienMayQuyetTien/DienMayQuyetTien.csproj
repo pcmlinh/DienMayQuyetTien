@@ -137,6 +137,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageAccountController.cs" />
+    <Compile Include="Areas\Employee\Controllers\CashBillDetailsController.cs" />
     <Compile Include="Areas\Employee\Controllers\ManageProductController.cs" />
     <Compile Include="Areas\Employee\Controllers\ManageProductTypeController.cs" />
     <Compile Include="Areas\Employee\Controllers\ManageCashBillController.cs" />
@@ -208,6 +209,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\background.jpg" />
     <Content Include="Images\iphonex.jpg" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\maygiattoshiba.png" />
@@ -269,6 +271,11 @@
     <Content Include="Areas\Admin\Views\ManageAccount\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ManageAccount\Index.cshtml" />
     <Content Include="Areas\Employee\Views\Shared\_EmpLayout.cshtml" />
+    <Content Include="Areas\Employee\Views\CashBillDetails\Create.cshtml" />
+    <Content Include="Areas\Employee\Views\CashBillDetails\Delete.cshtml" />
+    <Content Include="Areas\Employee\Views\CashBillDetails\Details.cshtml" />
+    <Content Include="Areas\Employee\Views\CashBillDetails\Edit.cshtml" />
+    <Content Include="Areas\Employee\Views\CashBillDetails\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\dataTables.bootstrap4.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

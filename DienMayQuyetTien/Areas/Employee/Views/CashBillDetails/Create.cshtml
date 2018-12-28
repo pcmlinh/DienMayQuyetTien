@@ -1,0 +1,51 @@
+﻿@model DienMayQuyetTien.Models.CashBillDetail
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm("Create2", "CashBillDetails"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Thông tin các sản phẩm</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.BillID)
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.ProductID, "Sản phẩm", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.ProductID, (SelectList)ViewData["ProductID"], String.Empty)
+                    @Html.ValidationMessageFor(model => model.ProductID)
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.SalePrice, "Đơn giá bán", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SalePrice)
+                    @Html.ValidationMessageFor(model => model.SalePrice)
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Quantity, "Số lượng", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Quantity)
+                    @Html.ValidationMessageFor(model => model.Quantity)
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Thêm sản phẩm" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
