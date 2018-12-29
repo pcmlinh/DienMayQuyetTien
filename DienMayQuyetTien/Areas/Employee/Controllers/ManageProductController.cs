@@ -124,13 +124,14 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
         {
             if (model.ImageFile == null)
             {
-                ModelState.AddModelError("ImageFile", "Chưa có hình sản phẩm!");
+                Product thisProduct = db.Products.Where(p => p.ID == model.ID).FirstOrDefault();
+                model.Avatar = thisProduct.Avatar;
             }
             if (ModelState.IsValid)
             {
                 using (var scope = new TransactionScope())
                 {
-                    db.Products.Add(model);
+                    Product thisProduct = db.Products.Where(p => p.ID == model.ID).FirstOrDefault();
 
                     if (model.ImageFile != null)
                     {
@@ -140,6 +141,7 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
                         model.ImageFile.SaveAs(path);
                         model.Avatar = imageName;
                     }
+                    db.Entry(thisProduct).CurrentValues.SetValues(model);
                     db.SaveChanges();
                     scope.Complete();
                     return RedirectToAction("Index");

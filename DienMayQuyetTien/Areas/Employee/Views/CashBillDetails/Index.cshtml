@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
-    
+
 }
 
 <h2>Index</h2>
@@ -39,9 +39,9 @@
             @Html.DisplayFor(modelItem => item.Product.ProductCode)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
         </td>
     </tr>
 }
@@ -51,6 +51,10 @@
     <div class="form-group">
         <label class="control-label col-md-2">Tổng tiền</label>
         <div class="col-md-10">
+            @{var total = Model.Sum(m => m.SalePrice * m.Quantity);
+                Session["total"] = total;
+                }
+            
             <input class="disabled" value="@Model.Sum(m => m.SalePrice * m.Quantity)" disabled /> VNĐ
         </div>
     </div>

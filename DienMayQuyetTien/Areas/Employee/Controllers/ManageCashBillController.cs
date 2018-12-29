@@ -96,9 +96,10 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
             using (var scope = new TransactionScope())
                 try
                 {
-                    var cashBill = Session["CashBill"] as CashBill;
+                    var cashBill = Session["CashBill"] as CashBill;                 
                     var cashBillDetail = Session["CashBillDetail"] as List<CashBillDetail>;
-
+                    cashBill.GrandTotal = (int)Session["total"];
+                    cashBill.Date = DateTime.Now;
                     db.CashBills.Add(cashBill);
                     db.SaveChanges();
 
@@ -110,7 +111,7 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
                     }
                     db.SaveChanges();
                     scope.Complete();
-
+                    Session["total"] = null;
                     Session["CashBill"] = null;
                     Session["CashBillDetail"] = null;
                     return RedirectToAction("Index");

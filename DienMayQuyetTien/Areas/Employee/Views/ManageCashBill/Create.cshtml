@@ -18,15 +18,13 @@
         @Html.ValidationSummary(true)
 
         <div class="row">
-            <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.Date, "Ngày lập hóa đơn", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.Date, new { type = "date",@class ="form-control"})
-                    @Html.ValidationMessageFor(model => model.Date)
+               
+                <div class="col-md-10" style="margin-bottom:30px; margin-left:15px;">
+                    Ngày lập hóa đơn: <em>@DateTime.Now</em>
+
                 </div>
-            </div>
             <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.CustomerName, "Tên khách hàng", new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.CustomerName, "Tên khách hàng", new { @class = "control-label col-md-6" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.CustomerName)
                     @Html.ValidationMessageFor(model => model.CustomerName)
@@ -34,7 +32,7 @@
             </div>
 
             <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.PhoneNumber, "Số điện thoại", new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.PhoneNumber, "Số điện thoại", new { @class = "control-label col-md-6" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.PhoneNumber)
                     @Html.ValidationMessageFor(model => model.PhoneNumber)
@@ -44,7 +42,7 @@
 
         <div class="row">
             <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.Address, "Địa chỉ", new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Address, "Địa chỉ", new { @class = "control-label col-md-6" })
                 <div class="col-md-10">
                     @Html.TextAreaFor(model => model.Address)
                     @Html.ValidationMessageFor(model => model.Address)
@@ -52,7 +50,7 @@
             </div>
 
             <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.Note, "Ghi chú", new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Note, "Ghi chú", new { @class = "control-label col-md-6" })
                 <div class="col-md-10">
                     @Html.TextAreaFor(model => model.Note)
                     @Html.ValidationMessageFor(model => model.Note)
