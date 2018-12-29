@@ -1,60 +1,67 @@
 ﻿@model DienMayQuyetTien.Models.News
 
 @{
-    ViewBag.Title = "Edit";
+    /**/
+
+    ViewBag.Title = "Chỉnh Sửa Tin Tức";
     Layout = "~/Areas/Employee/Views/Shared/_EmpLayout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Chỉnh Sửa</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "ManageNews", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>News</h4>
+
+    <div class="form-horizontal" align="center" style="  border: 1px solid;
+         padding: 10px;
+         box-shadow: 5px 5px #888888;;border-radius: 15px; width:600p;">
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Title, "Tiêu Ðề", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Title)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Img, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Img, "Hình Ảnh", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Img, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Img, "", new { @class = "text-danger" })
+                @Html.TextBox("ImageFile", null, new { type = "file", accept = "image/gif, image/jpeg, image/png", onchange = "readURL(this);", @class = "form-control" })
+                @Html.ValidationMessage("ImageFile")
+                <img id="HinhTT" src="@Url.Action("Details", new { imageName = Model.Img })" style="width:350px;height:150px;margin-top:15px" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Infor, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Infor, "Thông Tin", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Infor, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Infor, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Infor)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Check, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Check, "Trạng Thái", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.Check)
-                    @Html.ValidationMessageFor(model => model.Check, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Check)
                 </div>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-success" />
+                &nbsp;
+                @Html.ActionLink("Cancel", "Index", "ManageNews", null, new { @class = "btn btn-danger" })
             </div>
         </div>
     </div>
@@ -66,4 +73,18 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#HinhTT')
+                        .attr('src', e.target.result);
+                    //.width(150)
+                    //.height(200);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 }

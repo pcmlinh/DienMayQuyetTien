@@ -1,52 +1,68 @@
 ﻿@model IEnumerable<DienMayQuyetTien.Models.News>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Quản lí Tin Túc";
     Layout = "~/Areas/Employee/Views/Shared/_EmpLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Quản Lí Tin Tức</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "ManageNews")'"><i class="fa fa-plus"></i> Thêm Tin Tức</button>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Img)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Infor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Check)
-        </th>
-        <th></th>
-    </tr>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Danh Sách Tin Tức
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Img)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Infor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Check)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead align="center">
+                    <tr>
+                        <th>Tiêu Đề</th>
+                        <th>Hình Ảnh</th>
+                        <th>Thông Tin</th>
+                        <th>Trạng Thái</th>
+                        <th>Hành Động</th>
+                    </tr>
+                </thead>
 
-</table>
+                <tfoot align="center">
+                    <tr>
+                        <th>Tiêu Đề</th>
+                        <th>Hình Ảnh</th>
+                        <th>Thông Tin</th>
+                        <th>Trạng Thái</th>
+                        <th>Hành Động</th>
+                    </tr>
+                </tfoot>
+
+                <tbody align="center">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                <img src="/Images/@item.Img" width="120px" height="70px " />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Infor)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Check)
+                            </td>
+                            <td>
+
+                                <button class="btn btn-info" onclick="location.href='@Url.Action("Edit", "ManageNews", new { id = item.Id })'"><i class="fa fa-pencil"></i></button> |
+                                <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "ManageNews", new { id = item.Id })'"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    </div>

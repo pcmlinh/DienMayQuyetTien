@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using DienMayQuyetTien.Models;
@@ -17,28 +18,35 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
         // GET: Employee/ManageNews
         public ActionResult Index()
         {
-            return View(db.News.ToList());
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View(db.News.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
+
         }
 
         // GET: Employee/ManageNews/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string imageName)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            News news = db.News.Find(id);
-            if (news == null)
-            {
-                return HttpNotFound();
-            }
-            return View(news);
+            var path = Server.MapPath("~/Images/" + imageName);
+            return File(path, "images");
         }
 
         // GET: Employee/ManageNews/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View(Session["News"]);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
         }
 
         // POST: Employee/ManageNews/Create
@@ -46,31 +54,63 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Img,Infor,Check")] News news)
+        public ActionResult Create(News news)
         {
+            if (news.ImageFile == null)
+            {
+                ModelState.AddModelError("ImageFile", "Chưa có hình sản phẩm!");
+            }
             if (ModelState.IsValid)
             {
-                db.News.Add(news);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                using (var scope = new TransactionScope())
+                {
+                    db.News.Add(news);
+
+                    if (news.ImageFile != null)
+                    {
+                        var imageName = System.IO.Path.GetFileName(news.ImageFile.FileName);
+                        var path = Server.MapPath("~/Images");
+                        path = System.IO.Path.Combine(path, imageName);
+                        news.ImageFile.SaveAs(path);
+                        news.Img = imageName;
+                    }
+                    db.SaveChanges();
+                    scope.Complete();
+                    return RedirectToAction("Index");
+
+                }
             }
 
-            return View(news);
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View(news);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
+
+
         }
 
         // GET: Employee/ManageNews/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+
             News news = db.News.Find(id);
             if (news == null)
             {
                 return HttpNotFound();
             }
-            return View(news);
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View(news);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
+
         }
 
         // POST: Employee/ManageNews/Edit/5
@@ -78,15 +118,44 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Img,Infor,Check")] News news)
+        public ActionResult Edit(News news)
         {
+            if (news.ImageFile == null)
+            {
+                News thisNew = db.News.Where(p => p.Id == news.Id).FirstOrDefault();
+                news.Img = thisNew.Img;
+            }
             if (ModelState.IsValid)
             {
-                db.Entry(news).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                using (var scope = new TransactionScope())
+                {
+                    News thisNew = db.News.Where(p => p.Id == news.Id).FirstOrDefault();
+
+
+
+                    if (news.ImageFile != null)
+                    {
+                        var imageName = System.IO.Path.GetFileName(news.ImageFile.FileName);
+                        var path = Server.MapPath("~/Images");
+                        path = System.IO.Path.Combine(path, imageName);
+                        news.ImageFile.SaveAs(path);
+                        news.Img = imageName;
+                    }
+                    db.Entry(thisNew).CurrentValues.SetValues(news);
+                    db.SaveChanges();
+                    scope.Complete();
+                    return RedirectToAction("Index");
+
+                }
             }
-            return View(news);
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View(news);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
         }
 
         // GET: Employee/ManageNews/Delete/5
@@ -101,7 +170,15 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
             {
                 return HttpNotFound();
             }
-            return View(news);
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View(news);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
+
         }
 
         // POST: Employee/ManageNews/Delete/5

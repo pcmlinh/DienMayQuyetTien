@@ -83,7 +83,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" Type="int" />
+    <Property Name="Id" Nullable="false" Type="int" StoreGeneratedPattern="Identity" />
     <Property Name="Title" MaxLength="50" Type="nvarchar" />
     <Property Name="Img" MaxLength="20" Type="nchar" />
     <Property Name="Infor" MaxLength="50" Type="nvarchar" />

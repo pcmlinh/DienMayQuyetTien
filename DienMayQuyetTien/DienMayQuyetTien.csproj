@@ -218,6 +218,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\background.jpg" />
     <Content Include="Images\iphonex.jpg" />
+    <Content Include="Images\khuyenmai.jpg" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\maygiattoshiba.png" />
     <Content Include="Images\maylanhlg.jpg" />
