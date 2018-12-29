@@ -22,6 +22,7 @@
         <AssociationConnector Association="DmQT07Model.FK_InstallmentBillDetail_InstallmentBill" ManuallyRouted="false" />
         <AssociationConnector Association="DmQT07Model.FK_InstallmentBillDetail_Product" ManuallyRouted="false" />
         <AssociationConnector Association="DmQT07Model.FK_Product_ProductType" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DmQT07Model.News" Width="1.5" PointX="10.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

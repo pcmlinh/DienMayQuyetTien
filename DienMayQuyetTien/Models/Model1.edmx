@@ -4,122 +4,132 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DmQT07Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="DmQT07Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="fullname" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="authorityID" Type="int" Nullable="false" />
+          <Property Name="id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="username" Nullable="false" MaxLength="50" Type="varchar" />
+          <Property Name="password" Nullable="false" MaxLength="50" Type="varchar" />
+          <Property Name="fullname" Nullable="false" MaxLength="50" Type="nvarchar" />
+          <Property Name="email" Nullable="false" MaxLength="100" Type="varchar" />
+          <Property Name="authorityID" Nullable="false" Type="int" />
         </EntityType>
         <EntityType Name="authority">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="type" Type="nvarchar" MaxLength="30" />
+          <Property Name="id" Nullable="false" Type="int" />
+          <Property Name="type" MaxLength="30" Type="nvarchar" />
         </EntityType>
         <EntityType Name="CashBill">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BillCode" Type="varchar" MaxLength="10" />
-          <Property Name="CustomerName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="PhoneNumber" Type="varchar" MaxLength="12" />
-          <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="Shipper" Type="nvarchar" MaxLength="100" />
-          <Property Name="Note" Type="nvarchar" MaxLength="255" />
-          <Property Name="GrandTotal" Type="int" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="BillCode" MaxLength="10" Type="varchar" />
+          <Property Name="CustomerName" Nullable="false" MaxLength="100" Type="nvarchar" />
+          <Property Name="PhoneNumber" MaxLength="12" Type="varchar" />
+          <Property Name="Address" Nullable="false" MaxLength="100" Type="nvarchar" />
+          <Property Name="Date" Nullable="false" Type="datetime" />
+          <Property Name="Shipper" MaxLength="100" Type="nvarchar" />
+          <Property Name="Note" MaxLength="255" Type="nvarchar" />
+          <Property Name="GrandTotal" Nullable="false" Type="int" />
         </EntityType>
         <EntityType Name="CashBillDetail">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BillID" Type="int" Nullable="false" />
-          <Property Name="ProductID" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="SalePrice" Type="int" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="BillID" Nullable="false" Type="int" />
+          <Property Name="ProductID" Nullable="false" Type="int" />
+          <Property Name="Quantity" Nullable="false" Type="int" />
+          <Property Name="SalePrice" Nullable="false" Type="int" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CustomerCode" Type="varchar" MaxLength="12" />
-          <Property Name="CustomerName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="PhoneNumber" Type="varchar" MaxLength="12" />
-          <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="CustomerCode" MaxLength="12" Type="varchar" />
+          <Property Name="CustomerName" Nullable="false" MaxLength="100" Type="nvarchar" />
+          <Property Name="PhoneNumber" MaxLength="12" Type="varchar" />
+          <Property Name="Address" Nullable="false" MaxLength="100" Type="nvarchar" />
           <Property Name="YearOfBirth" Type="int" />
         </EntityType>
         <EntityType Name="InstallmentBill">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BillCode" Type="varchar" MaxLength="10" />
-          <Property Name="CustomerID" Type="int" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="Shipper" Type="nvarchar" MaxLength="100" />
-          <Property Name="Note" Type="nvarchar" MaxLength="255" />
-          <Property Name="Method" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="Period" Type="int" Nullable="false" />
-          <Property Name="GrandTotal" Type="int" Nullable="false" />
-          <Property Name="Taken" Type="int" Nullable="false" />
-          <Property Name="Remain" Type="int" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="BillCode" MaxLength="10" Type="varchar" />
+          <Property Name="CustomerID" Nullable="false" Type="int" />
+          <Property Name="Date" Nullable="false" Type="datetime" />
+          <Property Name="Shipper" MaxLength="100" Type="nvarchar" />
+          <Property Name="Note" MaxLength="255" Type="nvarchar" />
+          <Property Name="Method" Nullable="false" MaxLength="10" Type="nvarchar" />
+          <Property Name="Period" Nullable="false" Type="int" />
+          <Property Name="GrandTotal" Nullable="false" Type="int" />
+          <Property Name="Taken" Nullable="false" Type="int" />
+          <Property Name="Remain" Nullable="false" Type="int" />
         </EntityType>
         <EntityType Name="InstallmentBillDetail">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BillID" Type="int" Nullable="false" />
-          <Property Name="ProductID" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="InstallmentPrice" Type="int" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="BillID" Nullable="false" Type="int" />
+          <Property Name="ProductID" Nullable="false" Type="int" />
+          <Property Name="Quantity" Nullable="false" Type="int" />
+          <Property Name="InstallmentPrice" Nullable="false" Type="int" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="int" />
+          <Property Name="Title" MaxLength="50" Type="nvarchar" />
+          <Property Name="Img" MaxLength="20" Type="nchar" />
+          <Property Name="Infor" MaxLength="50" Type="nvarchar" />
+          <Property Name="Check" Type="bit" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductCode" Type="varchar" MaxLength="10" />
-          <Property Name="ProductName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="ProductTypeID" Type="int" Nullable="false" />
-          <Property Name="SalePrice" Type="int" Nullable="false" />
-          <Property Name="OriginPrice" Type="int" Nullable="false" />
-          <Property Name="InstallmentPrice" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="Avatar" Type="varchar" MaxLength="50" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="ProductCode" MaxLength="10" Type="varchar" />
+          <Property Name="ProductName" Nullable="false" MaxLength="100" Type="nvarchar" />
+          <Property Name="ProductTypeID" Nullable="false" Type="int" />
+          <Property Name="SalePrice" Nullable="false" Type="int" />
+          <Property Name="OriginPrice" Nullable="false" Type="int" />
+          <Property Name="InstallmentPrice" Nullable="false" Type="int" />
+          <Property Name="Quantity" Nullable="false" Type="int" />
+          <Property Name="Avatar" MaxLength="50" Type="varchar" />
           <Property Name="Status" Type="bit" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductTypeCode" Type="varchar" MaxLength="3" Nullable="false" />
-          <Property Name="ProductTypeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="ProductTypeCode" Nullable="false" MaxLength="3" Type="varchar" />
+          <Property Name="ProductTypeName" Nullable="false" MaxLength="100" Type="nvarchar" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Nullable="false" MaxLength="128" Type="nvarchar" />
+          <Property Name="principal_id" Nullable="false" Type="int" />
+          <Property Name="diagram_id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK__Account__authori__5FB337D6">
-          <End Role="authority" Type="Self.authority" Multiplicity="1" />
-          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <End Type="Self.authority" Multiplicity="1" Role="authority" />
+          <End Type="Self.Account" Multiplicity="*" Role="Account" />
           <ReferentialConstraint>
             <Principal Role="authority">
               <PropertyRef Name="id" />
@@ -130,8 +140,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CashBillDetail_CashBill">
-          <End Role="CashBill" Type="Self.CashBill" Multiplicity="1" />
-          <End Role="CashBillDetail" Type="Self.CashBillDetail" Multiplicity="*" />
+          <End Type="Self.CashBill" Multiplicity="1" Role="CashBill" />
+          <End Type="Self.CashBillDetail" Multiplicity="*" Role="CashBillDetail" />
           <ReferentialConstraint>
             <Principal Role="CashBill">
               <PropertyRef Name="ID" />
@@ -142,8 +152,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CashBillDetail_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="CashBillDetail" Type="Self.CashBillDetail" Multiplicity="*" />
+          <End Type="Self.Product" Multiplicity="1" Role="Product" />
+          <End Type="Self.CashBillDetail" Multiplicity="*" Role="CashBillDetail" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="ID" />
@@ -154,8 +164,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_InstallmentBill_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
-          <End Role="InstallmentBill" Type="Self.InstallmentBill" Multiplicity="*" />
+          <End Type="Self.Customer" Multiplicity="1" Role="Customer" />
+          <End Type="Self.InstallmentBill" Multiplicity="*" Role="InstallmentBill" />
           <ReferentialConstraint>
             <Principal Role="Customer">
               <PropertyRef Name="ID" />
@@ -166,8 +176,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_InstallmentBillDetail_InstallmentBill">
-          <End Role="InstallmentBill" Type="Self.InstallmentBill" Multiplicity="1" />
-          <End Role="InstallmentBillDetail" Type="Self.InstallmentBillDetail" Multiplicity="*" />
+          <End Type="Self.InstallmentBill" Multiplicity="1" Role="InstallmentBill" />
+          <End Type="Self.InstallmentBillDetail" Multiplicity="*" Role="InstallmentBillDetail" />
           <ReferentialConstraint>
             <Principal Role="InstallmentBill">
               <PropertyRef Name="ID" />
@@ -178,8 +188,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_InstallmentBillDetail_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="InstallmentBillDetail" Type="Self.InstallmentBillDetail" Multiplicity="*" />
+          <End Type="Self.Product" Multiplicity="1" Role="Product" />
+          <End Type="Self.InstallmentBillDetail" Multiplicity="*" Role="InstallmentBillDetail" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="ID" />
@@ -190,8 +200,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_ProductType">
-          <End Role="ProductType" Type="Self.ProductType" Multiplicity="1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <End Type="Self.ProductType" Multiplicity="1" Role="ProductType" />
+          <End Type="Self.Product" Multiplicity="*" Role="Product" />
           <ReferentialConstraint>
             <Principal Role="ProductType">
               <PropertyRef Name="ID" />
@@ -209,40 +219,40 @@
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InstallmentBill" EntityType="Self.InstallmentBill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InstallmentBillDetail" EntityType="Self.InstallmentBillDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Account__authori__5FB337D6" Association="Self.FK__Account__authori__5FB337D6">
-            <End Role="authority" EntitySet="authority" />
-            <End Role="Account" EntitySet="Account" />
+            <End EntitySet="authority" Role="authority" />
+            <End EntitySet="Account" Role="Account" />
           </AssociationSet>
           <AssociationSet Name="FK_CashBillDetail_CashBill" Association="Self.FK_CashBillDetail_CashBill">
-            <End Role="CashBill" EntitySet="CashBill" />
-            <End Role="CashBillDetail" EntitySet="CashBillDetail" />
+            <End EntitySet="CashBill" Role="CashBill" />
+            <End EntitySet="CashBillDetail" Role="CashBillDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_CashBillDetail_Product" Association="Self.FK_CashBillDetail_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="CashBillDetail" EntitySet="CashBillDetail" />
+            <End EntitySet="Product" Role="Product" />
+            <End EntitySet="CashBillDetail" Role="CashBillDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_InstallmentBill_Customer" Association="Self.FK_InstallmentBill_Customer">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="InstallmentBill" EntitySet="InstallmentBill" />
+            <End EntitySet="Customer" Role="Customer" />
+            <End EntitySet="InstallmentBill" Role="InstallmentBill" />
           </AssociationSet>
           <AssociationSet Name="FK_InstallmentBillDetail_InstallmentBill" Association="Self.FK_InstallmentBillDetail_InstallmentBill">
-            <End Role="InstallmentBill" EntitySet="InstallmentBill" />
-            <End Role="InstallmentBillDetail" EntitySet="InstallmentBillDetail" />
+            <End EntitySet="InstallmentBill" Role="InstallmentBill" />
+            <End EntitySet="InstallmentBillDetail" Role="InstallmentBillDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_InstallmentBillDetail_Product" Association="Self.FK_InstallmentBillDetail_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="InstallmentBillDetail" EntitySet="InstallmentBillDetail" />
+            <End EntitySet="Product" Role="Product" />
+            <End EntitySet="InstallmentBillDetail" Role="InstallmentBillDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_ProductType" Association="Self.FK_Product_ProductType">
-            <End Role="ProductType" EntitySet="ProductType" />
-            <End Role="Product" EntitySet="Product" />
+            <End EntitySet="ProductType" Role="ProductType" />
+            <End EntitySet="Product" Role="Product" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DmQT07Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -495,7 +505,18 @@
             <End Role="ProductType" EntitySet="ProductTypes" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
+          <EntitySet Name="News" EntityType="DmQT07Model.News" />
         </EntityContainer>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Img" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Infor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Check" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -621,6 +642,17 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="DmQT07Model.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="Check" ColumnName="Check" />
+                <ScalarProperty Name="Infor" ColumnName="Infor" />
+                <ScalarProperty Name="Img" ColumnName="Img" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

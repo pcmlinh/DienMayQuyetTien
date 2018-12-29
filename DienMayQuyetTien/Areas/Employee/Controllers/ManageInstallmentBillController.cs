@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using DienMayQuyetTien.Models;
@@ -17,8 +18,14 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
         // GET: Employee/ManageInstallmentBill
         public ActionResult Index()
         {
-            var installmentBills = db.InstallmentBills.Include(i => i.Customer);
-            return View(installmentBills.ToList());
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View(db.InstallmentBills.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
         }
 
         // GET: Employee/ManageInstallmentBill/Details/5
@@ -33,14 +40,27 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
             {
                 return HttpNotFound();
             }
-            return View(installmentBill);
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View(installmentBill);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
         }
 
         // GET: Employee/ManageInstallmentBill/Create
         public ActionResult Create()
         {
-            ViewBag.CustomerID = new SelectList(db.Customers, "ID", "CustomerCode");
-            return View();
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View(Session["InstallmentBill"]);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
         }
 
         // POST: Employee/ManageInstallmentBill/Create
@@ -48,19 +68,62 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,BillCode,CustomerID,Date,Shipper,Note,Method,Period,GrandTotal,Taken,Remain")] InstallmentBill installmentBill)
+        public ActionResult Create(InstallmentBill model)
         {
             if (ModelState.IsValid)
             {
-                db.InstallmentBills.Add(installmentBill);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                Session["InstallmentBill"] = model;
             }
 
-            ViewBag.CustomerID = new SelectList(db.Customers, "ID", "CustomerCode", installmentBill.CustomerID);
-            return View(installmentBill);
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create2()
+        {
+            using (var scope = new TransactionScope())
+                try
+                {
+                    var installmentBill = Session["InstallmentBill"] as InstallmentBill;
+                    var installmentBillDetail = Session["InstallmentBillDetail"] as List<InstallmentBillDetail>;
 
+                    db.InstallmentBills.Add(installmentBill);
+                    db.SaveChanges();
+
+                    foreach (var detail in installmentBillDetail)
+                    {
+                        detail.BillID = installmentBill.ID;
+                        detail.Product = null;
+                        db.InstallmentBillDetails.Add(detail);
+                    }
+                    db.SaveChanges();
+                    scope.Complete();
+
+                    Session["InstallmentBill"] = null;
+                    Session["InstallmentBillDetail"] = null;
+                    return RedirectToAction("Index");
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View("Create");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
+
+        }
         // GET: Employee/ManageInstallmentBill/Edit/5
         public ActionResult Edit(int? id)
         {

@@ -249,5 +249,16 @@
       <End Role="ProductType" EntitySet="ProductTypes" />
       <End Role="Product" EntitySet="Products" />
     </AssociationSet>
+    <EntitySet Name="News" EntityType="DmQT07Model.News" />
   </EntityContainer>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Img" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Infor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Check" Type="Boolean" />
+  </EntityType>
 </Schema>

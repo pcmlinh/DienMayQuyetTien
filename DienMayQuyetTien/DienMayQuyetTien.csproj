@@ -138,6 +138,8 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageAccountController.cs" />
     <Compile Include="Areas\Employee\Controllers\CashBillDetailsController.cs" />
+    <Compile Include="Areas\Employee\Controllers\InstallmentBillDetailsController.cs" />
+    <Compile Include="Areas\Employee\Controllers\ManageNewsController.cs" />
     <Compile Include="Areas\Employee\Controllers\ManageProductController.cs" />
     <Compile Include="Areas\Employee\Controllers\ManageProductTypeController.cs" />
     <Compile Include="Areas\Employee\Controllers\ManageCashBillController.cs" />
@@ -183,6 +185,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\News.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -276,6 +281,16 @@
     <Content Include="Areas\Employee\Views\CashBillDetails\Details.cshtml" />
     <Content Include="Areas\Employee\Views\CashBillDetails\Edit.cshtml" />
     <Content Include="Areas\Employee\Views\CashBillDetails\Index.cshtml" />
+    <Content Include="Areas\Employee\Views\InstallmentBillDetails\Create.cshtml" />
+    <Content Include="Areas\Employee\Views\InstallmentBillDetails\Delete.cshtml" />
+    <Content Include="Areas\Employee\Views\InstallmentBillDetails\Details.cshtml" />
+    <Content Include="Areas\Employee\Views\InstallmentBillDetails\Edit.cshtml" />
+    <Content Include="Areas\Employee\Views\InstallmentBillDetails\Index.cshtml" />
+    <Content Include="Areas\Employee\Views\ManageNews\Create.cshtml" />
+    <Content Include="Areas\Employee\Views\ManageNews\Delete.cshtml" />
+    <Content Include="Areas\Employee\Views\ManageNews\Details.cshtml" />
+    <Content Include="Areas\Employee\Views\ManageNews\Edit.cshtml" />
+    <Content Include="Areas\Employee\Views\ManageNews\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\dataTables.bootstrap4.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

@@ -35,5 +35,6 @@ namespace DienMayQuyetTien.Models
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductType> ProductTypes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<News> News { get; set; }
     }
 }
