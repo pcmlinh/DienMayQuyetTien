@@ -7,6 +7,7 @@ using System.Net;
 using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
+using DienMayQuyetTien.Areas.Employee.Models;
 using DienMayQuyetTien.Models;
 
 namespace DienMayQuyetTien.Areas.Employee.Controllers
@@ -172,47 +173,28 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
                 return RedirectToAction("Login", "Login", new { area = "" });
             }
         }
-
-        // GET: Employee/ManageCashBill/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Print(int id)
         {
-            if (id == null)
+            var hd = db.CashBills.FirstOrDefault(o => o.ID == id);
+            if (hd != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CashBill cashBill = db.CashBills.Find(id);
-            if (cashBill == null)
-            {
-                return HttpNotFound();
-            }
-            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
-            {
-                return View(cashBill);
+                CashBillModel cb = new CashBillModel();
+                cb.BillCode = hd.BillCode;
+                cb.CustomerName = hd.CustomerName;
+                cb.PhoneNumber = hd.PhoneNumber;
+                cb.Address = hd.Address;
+                cb.Date = hd.Date;
+                cb.Shipper = hd.Shipper;
+                cb.Note = hd.Note;
+                cb.GrandTotal = hd.GrandTotal;
+                cb.CASHBILLDETAIL = hd.CashBillDetails.ToList();
+                return View(cb);
             }
             else
             {
-                return RedirectToAction("Login", "Login", new { area = "" });
+                return View();
             }
-        }
 
-        // POST: Employee/ManageCashBill/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            CashBill cashBill = db.CashBills.Find(id);
-            db.CashBills.Remove(cashBill);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

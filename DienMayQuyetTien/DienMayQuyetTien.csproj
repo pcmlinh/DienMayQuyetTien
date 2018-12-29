@@ -145,6 +145,8 @@
     <Compile Include="Areas\Employee\Controllers\ManageCashBillController.cs" />
     <Compile Include="Areas\Employee\Controllers\ManageInstallmentBillController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
+    <Compile Include="Areas\Employee\Models\CashBillModel.cs" />
+    <Compile Include="Areas\Employee\Models\InstallmentBillModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
@@ -254,7 +256,6 @@
     <Content Include="Areas\Employee\Views\ManageProductType\Edit.cshtml" />
     <Content Include="Areas\Employee\Views\ManageProductType\Index.cshtml" />
     <Content Include="Areas\Employee\Views\ManageCashBill\Create.cshtml" />
-    <Content Include="Areas\Employee\Views\ManageCashBill\Delete.cshtml" />
     <Content Include="Areas\Employee\Views\ManageCashBill\Details.cshtml" />
     <Content Include="Areas\Employee\Views\ManageCashBill\Edit.cshtml" />
     <Content Include="Areas\Employee\Views\ManageCashBill\Index.cshtml" />
@@ -291,6 +292,8 @@
     <Content Include="Areas\Employee\Views\ManageNews\Details.cshtml" />
     <Content Include="Areas\Employee\Views\ManageNews\Edit.cshtml" />
     <Content Include="Areas\Employee\Views\ManageNews\Index.cshtml" />
+    <Content Include="Areas\Employee\Views\ManageCashBill\Print.cshtml" />
+    <Content Include="Areas\Employee\Views\ManageInstallmentBill\Print.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\dataTables.bootstrap4.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -334,7 +337,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Employee\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

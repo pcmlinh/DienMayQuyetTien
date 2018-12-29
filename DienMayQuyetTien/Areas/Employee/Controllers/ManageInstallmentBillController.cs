@@ -7,6 +7,7 @@ using System.Net;
 using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
+using DienMayQuyetTien.Areas.Employee.Models;
 using DienMayQuyetTien.Models;
 
 namespace DienMayQuyetTien.Areas.Employee.Controllers
@@ -157,39 +158,30 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
             return View(installmentBill);
         }
 
-        // GET: Employee/ManageInstallmentBill/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Print(int id)
         {
-            if (id == null)
+            var order = db.InstallmentBills.FirstOrDefault(o => o.ID == id);
+            if (order != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                InstallmentBillModel rp = new InstallmentBillModel();
+                rp.BillCode = order.BillCode;
+                rp.CustomerID = order.CustomerID;
+                rp.Date = order.Date;
+                rp.Shipper = order.Shipper;
+                rp.Note = order.Note;
+                rp.Method = order.Method;
+                rp.Period = order.Period;
+                rp.GrandTotal = order.GrandTotal;
+                rp.Taken = order.Taken;
+                rp.Remain = order.Remain;
+                rp.Customer = order.Customer;
+                rp.InstallmentBillDetail = order.InstallmentBillDetails.ToList();
+                return View(rp);
             }
-            InstallmentBill installmentBill = db.InstallmentBills.Find(id);
-            if (installmentBill == null)
+            else
             {
-                return HttpNotFound();
+                return View();
             }
-            return View(installmentBill);
-        }
-
-        // POST: Employee/ManageInstallmentBill/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            InstallmentBill installmentBill = db.InstallmentBills.Find(id);
-            db.InstallmentBills.Remove(installmentBill);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

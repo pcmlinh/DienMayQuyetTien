@@ -35,5 +35,6 @@ namespace DienMayQuyetTien.Models
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InstallmentBillDetail> InstallmentBillDetails { get; set; }
+        public List<InstallmentBillDetail> InstallmentBillDetail { get; internal set; }
     }
 }
