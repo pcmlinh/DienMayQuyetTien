@@ -359,13 +359,13 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Home\Buy.cshtml" />
     <Content Include="Views\Home\News.cshtml" />
-    <Content Include="Views\Home\NewsDetail.cshtml" />
     <Content Include="Views\ProductTypes\Create.cshtml" />
     <Content Include="Views\ProductTypes\Delete.cshtml" />
     <Content Include="Views\ProductTypes\Details.cshtml" />
     <Content Include="Views\ProductTypes\Edit.cshtml" />
     <Content Include="Views\ProductTypes\Index.cshtml" />
     <Content Include="Views\ProductTypes\ProductType.cshtml" />
+    <Content Include="Views\Home\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

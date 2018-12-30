@@ -1,8 +1,5 @@
-﻿@model IEnumerable<DienMayQuyetTien.Models.News>
+﻿@model DienMayQuyetTien.Models.Product
 
-@{
-    ViewBag.Title = "Tin tức";
-}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,59 +35,27 @@
             </div>
         </div>
     </div>
-    <div class="container" style="margin-top: 30px; background-color:#fff">
-        <div class="row">
-
-            <div class="col-md-12 col-12 col-lg-12 col-sm-12" id="blog-listing-medium">
-
-                <section>
-
-                    <div class="row group-post">
-
-                        @foreach (var item in Model)
-                        {
-                        <div class="post">
-                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-
-                                <h2>@Html.DisplayFor(modelItem => item.Title)</h2>
-                            </div>
-                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-
-                                <div class="image" height="50px">
-                                    <img src="/Images/@item.Img" class="img-responsive" height="50px" alt="Example blog post alt">
-                                </div>
-                            </div>
-
-
-                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-
-                                <h4>@Html.DisplayFor(modelItem => item.Infor)</h4>
-                            </div>
-
+    <div class="container" style="margin-top: 30px;background-color:#fff">
+        <section class="no-mb">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:30px">
+                        <strong style="font-size: 24px; " >Thông tin chi tiết sản phẩm</strong>
                         </div>
-                        }
+                        <div class="col-lg-6 col-md-8 col-sm-12">
+                            <img height="500px" src="~/Images/@Model.Avatar" style="padding-top:30px;padding-bottom:30px">
+                        </div>
+                        <div class="col-lg-6 col-md-4 col-sm-0">
+                            <h4>Tên sản phẩm</h4>
+                            <strong style="font-size: 24px">@Model.ProductName</strong>
+                            <h4>Giá bán</h4>
+                            <div><strong style="color: red; font-size: 30px">@String.Format("{0:0,0}", @Model.SalePrice) VNĐ</strong></div>
+                            <h4>Giá trả góp</h4>
+                            <strong style="color: red; font-size: 20px">@String.Format("{0:0,0}", @Model.InstallmentPrice) VNĐ</strong>
+</div>
                     </div>
-                </section>
-
-            </div>
-
-
-
-
-
-
-
-
-
-            <!-- *** LEFT COLUMN END *** -->
-            <!-- *** RIGHT COLUMN ***
-
-            _________________________________________________________ -->
-            <!-- *** RIGHT COLUMN END *** -->
-
-
-
-        </div>
+                </div>
+        </section>
     </div>
 
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

@@ -21,6 +21,11 @@ namespace DienMayQuyetTien.Controllers
             var path = Server.MapPath("~/Images/" + id);
             return File(path, "images");
         }
+        public ActionResult Detail(int id)
+        {
+            var product = db.Products.FirstOrDefault(x => x.ID==id);
+            return View(product);
+        }
         public ActionResult About()
         {
 
