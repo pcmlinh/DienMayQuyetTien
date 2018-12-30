@@ -210,13 +210,28 @@
     <Content Include="Content\bootstrap1.css" />
     <Content Include="Content\dataTables.bootstrap4.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\frontend\bootstrap-responsive.min.css" />
+    <Content Include="Content\frontend\font-awesome.min.css" />
+    <Content Include="Content\frontend\style.css" />
     <Content Include="Content\sb-admin.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\10030095---MG-AQUA-AQW-D900AT-_N_-02.png" />
+    <Content Include="Images\10030693-TIVI-LED-SHARP-32-INCH-LC-32LE280X-02.jpg" />
+    <Content Include="Images\10036146-2.jpg" />
+    <Content Include="Images\10038481-01.jpg" />
+    <Content Include="Images\AQD-DD850A_N_-01.jpg" />
+    <Content Include="Images\aqua.jpg" />
     <Content Include="Images\background.jpg" />
+    <Content Include="Images\canon.jpg" />
+    <Content Include="Images\canonn.jpg" />
+    <Content Include="Images\fujifilm.jpg" />
+    <Content Include="Images\galaxyj6+.jpg" />
+    <Content Include="Images\galaxyj8.jpg" />
+    <Content Include="Images\ip7.jpg" />
     <Content Include="Images\iphonex.jpg" />
     <Content Include="Images\khuyenmai.jpg" />
     <Content Include="Images\logo.png" />
@@ -224,6 +239,8 @@
     <Content Include="Images\maylanhlg.jpg" />
     <Content Include="Images\maylanhtoshiba.jpg" />
     <Content Include="Images\tivilg.jpg" />
+    <Content Include="Images\tv.jpg" />
+    <Content Include="Images\tvss.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

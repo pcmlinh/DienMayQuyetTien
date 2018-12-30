@@ -1,31 +1,179 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿@model IEnumerable<DienMayQuyetTien.Models.Product>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--  This file has been downloaded from https://bootdey.com  -->
+    <!--  All snippets are MIT license https://bootdey.com/license -->
+    <title>Điện Máy Quyết Tiến</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/frontend/style.css" rel="stylesheet" />
+</head>
+<body>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                </button>
+                <a href="#home" class="navbar-brand smoothScroll"><img src="~/Images/logo.png" height="60px"></a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#home" class="smoothScroll">TRANG CHỦ</a></li>
+                    <li><a href="#service" class="smoothScroll">GIỚI THIỆU</a></li>
+                    <li><a href="#about" class="smoothScroll">HƯỚNG DẪN MUA HÀNG</a></li>
+                    <li><a href="#portfolio" class="smoothScroll">TIN TỨC</a></li>
+                    <li><a href="#pricing" class="smoothScroll">PRICE</a></li>
+                    <li><a href="#contact" class="smoothScroll">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 60px;">
+        <div class="col-md-3">
+            <section class="panel">
+                <div class="panel-body">
+                    <input type="text" placeholder="Từ Khoá Tìm Kiếm..." class="form-control">
+                </div>
+            </section>
+            <section class="panel">
+                <header class="panel-heading">
+                    Loại Sản Phẩm
+                </header>
+                <div class="panel-body">
+                    <ul class="nav prod-cat">
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+                        <li><a href="#"><i class=" fa fa-angle-right"></i> Điện thoại</a></li>
+
+                    </ul>
+                </div>
+            </section>
+            <section class="panel">
+                <header class="panel-heading">
+                    Tầm Giá
+                </header>
+                <div class="panel-body sliders">
+                    <div id="slider-range" class="slider"></div>
+                    <div class="slider-info">
+                        <span id="slider-range-amount"></span>
+                    </div>
+                </div>
+            </section>
+            <section class="panel">
+                <header class="panel-heading">
+                    Bộ Lọc
+                </header>
+                <div class="panel-body">
+                    <form role="form product-form">
+                        <div class="form-group">
+                            <label>Thương Hiệu</label>
+                            <select class="form-control hasCustomSelect" style="-webkit-appearance: menulist-button; width: 231px; position: absolute; opacity: 0; height: 34px; font-size: 12px;">
+                                <option>SamSung</option>
+                                <option>Apple</option>
+                                <option>Sony</option>
+                                <option>LG</option>
+                            </select><span class="customSelect form-control" style="display: inline-block;"><span class="customSelectInner" style="width: 209px; display: inline-block;">SamSung</span></span>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Lọc</button>
+                    </form>
+                </div>
+            </section>
+            <section class="panel">
+                <header class="panel-heading">
+                    Bán Chạy Nhất
+                </header>
+                <div class="panel-body">
+                    <div class="best-seller">
+                        <article class="media">
+                            <a class="pull-left thumb p-thumb">
+                                <img src="http://thevectorlab.net/flatlab/img/product1.jpg">
+                            </a>
+                            <div class="media-body">
+                                <a href="#" class=" p-head">Item One Tittle</a>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                        </article>
+                        <article class="media">
+                            <a class="pull-left thumb p-thumb">
+                                <img src="http://thevectorlab.net/flatlab/img/product2.png">
+                            </a>
+                            <div class="media-body">
+                                <a href="#" class=" p-head">Item Two Tittle</a>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                        </article>
+                        <article class="media">
+                            <a class="pull-left thumb p-thumb">
+                                <img src="http://thevectorlab.net/flatlab/img/product3.png">
+                            </a>
+                            <div class="media-body">
+                                <a href="#" class=" p-head">Item Three Tittle</a>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="col-md-9">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="pull-right">
+                        <ul class="pagination pagination-sm pro-page-list">
+
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">»</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <div class="row product-list">
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4 ">
+                        <section class="panel responsive">
+                            <div class="pro-img-box">
+                                <img src="~/Images/@item.Avatar" height="220px" alt="">
+                                <a href="#" class="adtocart">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </a>
+                            </div>
+
+                            <div class="panel-body text-center">
+                                <h4>
+                                    <a href="#" class="pro-title">
+                                        @item.ProductName
+                                    </a>
+                                </h4>
+                                <p class="price">@String.Format("{0:0,0}", item.SalePrice) VNĐ</p>
+                            </div>
+                        </section>
+                    </div>
+                }
+
+
+
+
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
+</body>
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'p3plcpnl0537'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script>
+<script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script>
+</html>
