@@ -26,7 +26,7 @@ namespace DienMayQuyetTien.Models
         public int ID { get; set; }
         public string ProductCode { get; set; }
         [Required(ErrorMessage = "Vui lòng nhập tên sản phẩm")]
-        [StringLength(100, MinimumLength = 10, ErrorMessage = "Tên sản phẩm không được ít hơn 10 ký tự")]
+        [StringLength(100, MinimumLength = 5, ErrorMessage = "Tên sản phẩm không được ít hơn 5 ký tự và vượt quá 100 kí tự")]
         public string ProductName { get; set; }
 
         [Required(ErrorMessage = "Vui lòng chọn loại sản phẩm")]
@@ -44,7 +44,7 @@ namespace DienMayQuyetTien.Models
         [DataType(DataType.Currency)]
         public int InstallmentPrice { get; set; }
 
-        [Range(1, 100, ErrorMessage = "Số lượng không quá 100 món")]
+        [Range(1, 100, ErrorMessage = "Số lượng không vượt quá 100 món")]
         [Required(ErrorMessage = "Vui lòng nhập số lượng")]
         public int Quantity { get; set; }
         public string Avatar { get; set; }

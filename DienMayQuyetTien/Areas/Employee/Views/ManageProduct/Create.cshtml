@@ -5,7 +5,7 @@
     Layout = "~/Areas/Employee/Views/Shared/_EmpLayout.cshtml";
 }
 
-<h2>Thêm sản phẩm</h2>
+
 
 
 @using (Html.BeginForm("Create", "ManageProduct", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -13,12 +13,13 @@
     @Html.AntiForgeryToken()
 
         <div class="form-control" align="center" style="  border: 1px solid;
-  padding: 10px;
-  box-shadow: 5px 5px #888888;;border-radius: 15px; width:600p;">
+            padding: 10px;
+                box-shadow: 5px 5px #888888;border-radius: 15px; width:600px;">
+            <h2>Thêm sản phẩm</h2>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(model => model.ProductCode, "Mã sản phẩm", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.ProductCode, "Mã sản phẩm", htmlAttributes: new { @class = "control-label col-md-6" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.ProductCode, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.ProductCode)
@@ -26,7 +27,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.ProductName, "Tên sản phẩm", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.ProductName, "Tên sản phẩm", htmlAttributes: new { @class = "control-label col-md-6" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.ProductName)
@@ -34,7 +35,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.ProductTypeID, "Loại sản phẩm", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.ProductTypeID, "Loại sản phẩm", htmlAttributes: new { @class = "control-label col-md-6" })
                 <div class="col-md-10">
                     @Html.DropDownList("ProductTypeID", null, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.ProductTypeID)
@@ -42,31 +43,31 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.SalePrice, "Giá bán", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.SalePrice, "Giá bán", htmlAttributes: new { @class = "control-label col-md-6" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.SalePrice, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                    @Html.EditorFor(model => model.SalePrice, new { htmlAttributes = new { @class = "form-control", type = "number", min = "0", onkeypress = "return event.charCode >= 48" } })
                     @Html.ValidationMessageFor(model => model.SalePrice)
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.OriginPrice, "Giá gốc", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.OriginPrice, "Giá gốc", htmlAttributes: new { @class = "control-label col-md-6" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.OriginPrice, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                    @Html.EditorFor(model => model.OriginPrice, new { htmlAttributes = new { @class = "form-control", type = "number", min = "0", onkeypress = "return event.charCode >= 48" } })
                     @Html.ValidationMessageFor(model => model.OriginPrice)
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.InstallmentPrice, "Giá trả góp", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.InstallmentPrice, "Giá trả góp", htmlAttributes: new { @class = "control-label col-md-6" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.InstallmentPrice, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                    @Html.EditorFor(model => model.InstallmentPrice, new { htmlAttributes = new { @class = "form-control", type = "number", min = "0", onkeypress = "return event.charCode >= 48" } })
                     @Html.ValidationMessageFor(model => model.InstallmentPrice)
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Quantity, "Số lượng", htmlAttributes: new { @class = "control-label col-md-2", type = "number" })
+                @Html.LabelFor(model => model.Quantity, "Số lượng", htmlAttributes: new { @class = "control-label col-md-6", type = "number", min = "0", onkeypress = "return event.charCode >= 48" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Quantity)
@@ -74,7 +75,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Avatar, "Hình ảnh", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Avatar, "Hình ảnh", htmlAttributes: new { @class = "control-label col-md-6" })
                 <div class="col-md-10">
                     @Html.TextBox("ImageFile", null, new { type = "file", accept = "image/gif, image/jpeg, image/png", onchange = "readURL(this);", @class = "form-control" })
                     @Html.ValidationMessage("ImageFile")
@@ -83,7 +84,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Status, "Trạng thái", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Status, "Trạng thái", htmlAttributes: new { @class = "control-label col-md-6" })
                 <div class="col-md-10">
                     <div class="checkbox">
                         @Html.EditorFor(model => model.Status)
@@ -94,7 +95,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <button type="submit" class="btn btn-success">Thêm</button>
                 </div>
             </div>
         </div>
@@ -102,7 +103,7 @@
         }
 
         <div>
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Trở về danh sách", "Index")
         </div>
 
         @section Scripts {
