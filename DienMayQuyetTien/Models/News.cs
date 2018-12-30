@@ -10,7 +10,6 @@
 namespace DienMayQuyetTien.Models
 {
     using System;
-    using System.Collections.Generic;
     using System.Web;
 
     public partial class News
@@ -22,4 +21,5 @@ namespace DienMayQuyetTien.Models
         public Nullable<bool> Check { get; set; }
         public HttpPostedFileBase ImageFile { get; set; }
     }
+
 }
