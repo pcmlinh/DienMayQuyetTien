@@ -8,6 +8,16 @@ body{margin-top:20px;
     line-height: 30px;
 }
 
+.group-post {
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap:wrap;
+}
+.post{
+    width: 50%;
+}
+
 /*panel*/
 .panel {
     border: none;
@@ -176,6 +186,8 @@ body{margin-top:20px;
 .navbar-fixed-top {
     top: 0;
 }
+
+
 @media (min-width: 768px){
     .navbar-fixed-bottom, .navbar-fixed-top {
     border-radius: 0;

@@ -39,8 +39,8 @@ namespace DienMayQuyetTien.Controllers
         }
         public ActionResult News()
         {
-
-            return View();
+            var news= db.News.OrderByDescending(x => x.Id).ToList();
+            return View(news);
         }
         public ActionResult NewsDetail()
         {

@@ -138,29 +138,31 @@
 
             <div class="row product-list">
 
-                @{int i = 0;
-                        foreach (var item in Model)
+               
+                        @foreach (var item in Model)
                         {
-                    <div class="col-md-4 ">
-                        <section class="panel responsive">
-                            <div class="pro-img-box">
-                                <img src="~/Images/@item.Avatar" height="220px" alt="">
-                                <a href="#" class="adtocart">
-                                    <i class="fa fa-shopping-cart"></i>
-                                </a>
+                            <div class="col-md-4 ">
+                                <section class="panel responsive">
+                                    <div class="pro-img-box">
+                                        <img src="~/Images/@item.Avatar" height="220px" alt="">
+                                        <a href="#" class="adtocart">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="panel-body text-center">
+                                        <h4>
+                                            <a href="#" class="pro-title">
+                                                @item.ProductName
+                                            </a>
+                                        </h4>
+                                        <p class="price">@String.Format("{0:0,0}", item.SalePrice) VNĐ</p>
+                                    </div>
+                                </section>
                             </div>
 
-                            <div class="panel-body text-center">
-                                <h4>
-                                    <a href="#" class="pro-title">
-                                        @item.ProductName
-                                    </a>
-                                </h4>
-                                <p class="price">@String.Format("{0:0,0}", item.SalePrice) VNĐ</p>
-                            </div>
-                        </section>
-                    </div>
-                                } }
+                        }
+                   
 
 
 
