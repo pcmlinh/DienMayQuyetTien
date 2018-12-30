@@ -15,6 +15,11 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
     public class ManageInstallmentBillController : Controller
     {
         private DmQT07Entities1 db = new DmQT07Entities1();
+        public int setSessionTaken(int taken)
+        {
+            Session["Taken"] = taken;
+            return (int)Session["Taken"];
+        }
 
         // GET: Employee/ManageInstallmentBill
         public ActionResult Index()
@@ -43,6 +48,7 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
             }
             if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
             {
+
                 return View(installmentBill);
             }
             else
@@ -55,7 +61,9 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
         public ActionResult Create()
         {
             if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
-            {
+            {          
+                ViewBag.CustomerID = new SelectList(db.Customers, "ID", "CustomerCode");
+
                 return View(Session["InstallmentBill"]);
             }
             else
@@ -71,13 +79,16 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(InstallmentBill model)
         {
+            
             if (ModelState.IsValid)
             {
+                ViewBag.CustomerID = new SelectList(db.Customers, "ID", "CustomerCode", model.CustomerID);
                 Session["InstallmentBill"] = model;
             }
 
             if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
             {
+                
                 return View(model);
             }
             else
@@ -94,7 +105,11 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
                 {
                     var installmentBill = Session["InstallmentBill"] as InstallmentBill;
                     var installmentBillDetail = Session["InstallmentBillDetail"] as List<InstallmentBillDetail>;
-
+                    installmentBill.Date = DateTime.Now;
+                    installmentBill.GrandTotal = (int)Session["Total"];
+                    installmentBill.Taken = (int)Session["Taken"];
+                    installmentBill.Remain = ((int)Session["Total"] - (int)Session["Taken"]);
+                    ViewBag.CustomerID = new SelectList(db.Customers, "ID", "CustomerCode", installmentBill.CustomerID);
                     db.InstallmentBills.Add(installmentBill);
                     db.SaveChanges();
 
@@ -109,12 +124,15 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
 
                     Session["InstallmentBill"] = null;
                     Session["InstallmentBillDetail"] = null;
+                    Session["Total"] = null;
+                    Session["Taken"] = null;
                     return RedirectToAction("Index");
                 }
                 catch (Exception e)
                 {
                     ModelState.AddModelError("", e.Message);
                 }
+            
             if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
             {
                 return View("Create");
@@ -138,7 +156,15 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
                 return HttpNotFound();
             }
             ViewBag.CustomerID = new SelectList(db.Customers, "ID", "CustomerCode", installmentBill.CustomerID);
-            return View(installmentBill);
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View(installmentBill);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
+            
         }
 
         // POST: Employee/ManageInstallmentBill/Edit/5
@@ -155,7 +181,14 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CustomerID = new SelectList(db.Customers, "ID", "CustomerCode", installmentBill.CustomerID);
-            return View(installmentBill);
+            if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+            {
+                return View(installmentBill);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { area = "" });
+            }
         }
 
         public ActionResult Print(int id)
@@ -176,11 +209,27 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
                 rp.Remain = order.Remain;
                 rp.Customer = order.Customer;
                 rp.InstallmentBillDetail = order.InstallmentBillDetails.ToList();
-                return View(rp);
+                if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+                {
+                    return View(rp);
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Login", new { area = "" });
+                }
+                
             }
             else
             {
-                return View();
+
+                if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Login", new { area = "" });
+                }
             }
         }
     }

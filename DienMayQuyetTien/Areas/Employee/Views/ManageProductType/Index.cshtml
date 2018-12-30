@@ -5,36 +5,46 @@
     Layout = "~/Areas/Employee/Views/Shared/_EmpLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Quản lí loại sản phẩm</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "ManageProductType")'"><i class="fa fa-plus"></i> Thêm loại sản phẩm</button>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductTypeCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductTypeName)
-        </th>
-        <th></th>
-    </tr>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Bảng loại sản phẩm
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead align="center">
+                    <tr>
+                        <th>Mã loại sản phẩm</th>
+                        <th>Tên loại sản phẩm</th>
+                        <th>Tùy chọn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductTypeCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductTypeName)
+                            </td>
+                            <td>
+                                <button class="btn btn-info" onclick="location.href='@Url.Action("Edit", "ManageProductType", new { id = item.ID })'"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "ManageProductType", new { id = item.ID })'"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductTypeCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductTypeName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
 
-</table>

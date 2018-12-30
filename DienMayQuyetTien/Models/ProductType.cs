@@ -11,7 +11,8 @@ namespace DienMayQuyetTien.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ProductType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +22,13 @@ namespace DienMayQuyetTien.Models
         }
     
         public int ID { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng nhập mã loại sản phẩm")]
+        [StringLength(3, MinimumLength = 3, ErrorMessage = "Mã loại sản phẩm phải bao gồm 3 kí tự")]
         public string ProductTypeCode { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng nhập tên loại sản phẩm")]
+        [StringLength(100, MinimumLength = 1, ErrorMessage = "Tên loại sản phẩm không vượt quá 100 kí tự")]
         public string ProductTypeName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

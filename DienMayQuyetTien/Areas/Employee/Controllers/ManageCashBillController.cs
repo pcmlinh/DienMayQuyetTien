@@ -74,9 +74,7 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
         {
             if (ModelState.IsValid)
             {
-                //db.CashBills.Add(cashBill);
-                //db.SaveChanges();
-                //return RedirectToAction("Index");
+
                 Session["CashBill"] = model;
             }
 

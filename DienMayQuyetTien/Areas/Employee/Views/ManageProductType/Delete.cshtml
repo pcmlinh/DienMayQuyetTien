@@ -4,16 +4,15 @@
     ViewBag.Title = "Delete";
     Layout = "~/Areas/Employee/Views/Shared/_EmpLayout.cshtml";
 }
-
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<h3>Bạn có chắc chắn muốn xóa loại sản phẩm này?</h3>
 <div>
-    <h4>ProductType</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal" align="center" style="  border: 1px solid;
+            padding: 10px;
+                box-shadow: 5px 5px #888888;border-radius: 15px; width:500px;">
+        <h2>Xóa loại sản phẩm</h2>
         <dt>
-            @Html.DisplayNameFor(model => model.ProductTypeCode)
+            Mã loại sản phẩm
         </dt>
 
         <dd>
@@ -21,21 +20,24 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ProductTypeName)
+            Tên loại sản phẩm
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.ProductTypeName)
         </dd>
+        <dd>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <button type="submit" class="btn btn-danger">Xóa</button> |
+                    @Html.ActionLink("Trở về danh sách", "Index")
+                </div>
+            }
+        </dd>
 
     </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
 </div>

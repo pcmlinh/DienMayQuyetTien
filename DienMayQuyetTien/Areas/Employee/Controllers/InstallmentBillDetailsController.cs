@@ -36,9 +36,9 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
         //    }
         //    return View(installmentBillDetail);
         //}
-        public int SalePrice(int ProductID)
+        public int InstallmentPrice(int ProductID)
         {
-            return db.Products.Find(ProductID).SalePrice;
+            return db.Products.Find(ProductID).InstallmentPrice;
         }
 
         // GET: Employee/InstallmentBillDetails/Create
@@ -68,9 +68,6 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
                     installmentBillDetail = new List<InstallmentBillDetail>();
 
                 }
-                //db.InstallmentBillDetails.Add(installmentBillDetail);
-                //db.SaveChanges();
-                //return RedirectToAction("Index");
                 installmentBillDetail.Add(model);
                 Session["InstallmentBillDetail"] = installmentBillDetail;
                 return RedirectToAction("Create", "ManageInstallmentBill");
