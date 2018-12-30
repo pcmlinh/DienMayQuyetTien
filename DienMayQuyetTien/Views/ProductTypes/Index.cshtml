@@ -1,0 +1,10 @@
+﻿@model IEnumerable<DienMayQuyetTien.Models.ProductType>
+
+@{
+    Layout = null;
+}
+@foreach (var item in Model)
+{
+    <li><a href="@Url.Action("ProductType","ProductTypes", new { id = item.ID })"><i class=" fa fa-angle-right"></i> @item.ProductTypeName</a></li>
+}
+

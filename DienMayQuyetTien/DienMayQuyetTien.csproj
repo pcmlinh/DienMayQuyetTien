@@ -149,6 +149,7 @@
     <Compile Include="Areas\Employee\Models\InstallmentBillModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProductTypesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -173,6 +174,7 @@
     <Compile Include="Models\InstallmentBillDetail.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoaiSP.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -228,6 +230,8 @@
     <Content Include="Images\background.jpg" />
     <Content Include="Images\canon.jpg" />
     <Content Include="Images\canonn.jpg" />
+    <Content Include="Images\cover.jpg" />
+    <Content Include="Images\cover.png" />
     <Content Include="Images\fujifilm.jpg" />
     <Content Include="Images\galaxyj6+.jpg" />
     <Content Include="Images\galaxyj8.jpg" />
@@ -356,6 +360,12 @@
     <Content Include="Views\Home\Buy.cshtml" />
     <Content Include="Views\Home\News.cshtml" />
     <Content Include="Views\Home\NewsDetail.cshtml" />
+    <Content Include="Views\ProductTypes\Create.cshtml" />
+    <Content Include="Views\ProductTypes\Delete.cshtml" />
+    <Content Include="Views\ProductTypes\Details.cshtml" />
+    <Content Include="Views\ProductTypes\Edit.cshtml" />
+    <Content Include="Views\ProductTypes\Index.cshtml" />
+    <Content Include="Views\ProductTypes\ProductType.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
