@@ -1,7 +1,167 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+@model IEnumerable<DienMayQuyetTien.Models.Product>
 
-<p>Use this area to provide additional information.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--  This file has been downloaded from https://bootdey.com  -->
+    <!--  All snippets are MIT license https://bootdey.com/license -->
+    <title>Điện Máy Quyết Tiến</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/frontend/style.css" rel="stylesheet" />
+</head>
+<body>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                </button>
+                <a href="#home" class="navbar-brand smoothScroll"><img src="~/Images/logo.png" height="60px"></a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/Home" class="smoothScroll">TRANG CHỦ</a></li>
+                    <li><a href="/Home/About" class="smoothScroll">GIỚI THIỆU</a></li>
+                    <li><a href="/Home/Buy" class="smoothScroll">HƯỚNG DẪN MUA HÀNG</a></li>
+                    <li><a href="/Home/News" class="smoothScroll">TIN TỨC</a></li>
+                    <li><a href="/Home/Contact" class="smoothScroll">LIÊN HỆ</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 30px; background-color:#fff">
+        <h1 align="center">Cửa hàng điện máy Quyết Tiến</h1>
+        <section>
+
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <div class="heading">
+
+                        <h2>Giới thiệu</h2>
+
+                    </div>
+
+
+
+                    <p class="lead"><strong>Điện máy Quyết Tiến</strong> được thành lập vào năm 2018, chúng tôi hiểu rất rõ những băn khoăn khi mua các thiết bị <em>điện tử, điện lạnh</em> các <strong>thiết bị di động thông minh</strong> và cả đồ dùng cho <strong>smart home</strong> của khách hàng. Vì thế, chúng tôi cam kết đưa tới khách hàng những sản phẩm chính hãng, chất lượng được cung cấp bởi những nhà sản xuất uy tín nhất thế giới hiện nay <strong>samsung, sony, gl, htc, apple...</strong> Từng thiết bị <em>điện máy, điện lạnh</em> hay là các <em>đồ gia dụng</em> dùng trong nhà bếp thì <strong>Điện máy Quyết Tiến</strong> đều đảm bảo về chất lượng sản phẩm và độ an toàn.</p>
+                    <p class="lead">
+                        Và vì <em>chất lượng tốt</em> , dịch vụ chăm sóc khách hàng đặc biệt và các <em>ưu đãi </em>khi mua hàng tại <strong>Điện Máy Quyết Tiến</strong> nên chỉ trong vòng 1 năm <strong>Điện Máy Quyết Tiến</strong> đã nằm trong top 10 các cửa hàng bán lẻ uy tín nhất Việt Nam Hiện nay.<br>
+                        Nhắc đến <strong>Điện Máy Quyết Tiến</strong>  là nhắc đến các ưu đãi khủng khi mua hàng cùng với chương trình mua hàng <a href="intropayment.php"> trả góp </a>với lãi suất cực thấp.
+                    </p> <br>
+
+                    <div style="font-size: 20px;">
+                        <ul>
+                            Khi mua hàng tại
+                            <strong>Điện Máy Quyết Tiến</strong> bạn sẽ nhận được các ưu đãi sau :
+                            <li>Nhận ngay 500.000-1.000.000 VND tiền mặt khi hóa đơn mua hàng từ 50 triệu trở lên.</li>
+                            <li>Mỗi tài khoảng <a href="intropayment.php">khách hàng thân thân thiết</a> sẽ được nhận 1 lượt quay trúng thưởng trong sự kiện <a href="intropayment.php">vòng quay may mắn</a> hàng tháng</li>
+                            <li>Miễn phí giao hàng và lắp đặt trong phạm vi 10km</li>
+                            <li>Ngoài ra khách hàng còn có thể nhận ưu đãi từ các event trong năm ví dụ như : 20/11 , ngày quốc tế phụ nữ 20/10.... và hàng ngàn phần quà hấp dẫn chờ đón bạn.</li>
+                        </ul>
+
+                    </div>
+                    <p class="lead"> <strong>Điện Máy Quyết Tiến</strong> hân hạnh đồng hành cùng bạn - Quyet Tien Shop Make your life more worth living !  </p>
+
+
+
+
+                </div>
+
+            </div>
+
+
+
+
+
+        </section>
+
+        <section>
+
+            <div class="row" style="font-size: 20px;">
+
+                <div class="col-md-4">
+
+                    <div class="heading">
+
+                        <h2>Sứ mệnh</h2>
+
+                    </div>
+
+                    <ul class="ul-icons">
+
+                        <li>Mang đến cho khách hàng những thương hiệu thiết bị chất lượng với giá thành hợp lí nhất.</li>
+
+                        <li>Đáp ứng nhu cầu thiết bị điện máy trong đời sống hiện đại của khách hàng.</li>
+
+                    </ul>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="heading">
+
+                        <h2>Tầm nhìn</h2>
+
+                    </div>
+
+                    <ul class="ul-icons">
+
+                        <li>Trở thành nhà cung cấp thiết bị điện máy số 1 tại Việt Nam</li>
+
+                        <li>Là nơi đầu tiên khách hàng nghĩ đến khi mua các mặt hàng điện máy.</li>
+                    </ul>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="heading">
+
+                        <h2>Giá trị</h2>
+
+                    </div>
+
+
+
+                    <ul class="ul-icons">
+
+                        <li><i class="fa fa-check"></i>Chất lượng</li>
+
+                        <li><i class="fa fa-check"></i>Uy tín</li>
+
+                        <li><i class="fa fa-check"></i>Giá hợp lí</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+    </div>
+
+    
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
+</body>
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'p3plcpnl0537'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script>
+<script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script>
+</html>
