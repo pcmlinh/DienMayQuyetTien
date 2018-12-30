@@ -238,6 +238,7 @@
     <Content Include="Images\maygiattoshiba.png" />
     <Content Include="Images\maylanhlg.jpg" />
     <Content Include="Images\maylanhtoshiba.jpg" />
+    <Content Include="Images\payment.png" />
     <Content Include="Images\tivilg.jpg" />
     <Content Include="Images\tv.jpg" />
     <Content Include="Images\tvss.jpg" />
@@ -351,6 +352,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Home\Buy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
