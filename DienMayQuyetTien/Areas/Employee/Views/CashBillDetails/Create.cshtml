@@ -9,14 +9,14 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Thông tin các sản phẩm</h4>
+        <h4>Thêm sản phẩm</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.BillID)
 
         <div class="row">
             <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.ProductID, "Sản phẩm", new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.ProductID, "Sản phẩm", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 <div class="col-md-10">
                     @Html.DropDownListFor(model => model.ProductID, (SelectList)ViewData["ProductID"], String.Empty)
                     @Html.ValidationMessageFor(model => model.ProductID)
@@ -26,7 +26,7 @@
             <div class="form-group col-md-6">
                 @Html.LabelFor(model => model.SalePrice, "Đơn giá bán", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.SalePrice)
+                    @Html.EditorFor(model => model.SalePrice, new { @class = "form-control", @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model.SalePrice)
                 </div>
             </div>
