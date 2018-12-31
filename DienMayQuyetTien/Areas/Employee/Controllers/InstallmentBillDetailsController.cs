@@ -116,16 +116,10 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
         // GET: Employee/InstallmentBillDetails/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            InstallmentBillDetail installmentBillDetail = db.InstallmentBillDetails.Find(id);
-            if (installmentBillDetail == null)
-            {
-                return HttpNotFound();
-            }
-            return View(installmentBillDetail);
+            var CTHoaDonTG = Session["InstallmentBillDetail"] as List<InstallmentBillDetail>;
+            CTHoaDonTG = CTHoaDonTG.Except(CTHoaDonTG.Where(c => c.ID == id)).ToList();
+            Session["InstallmentBillDetail"] = CTHoaDonTG;
+            return RedirectToAction("Create", "ManageInstallmentBill");
         }
 
         // POST: Employee/InstallmentBillDetails/Delete/5

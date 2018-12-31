@@ -118,16 +118,10 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
         // GET: Employee/CashBillDetails/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CashBillDetail cashBillDetail = db.CashBillDetails.Find(id);
-            if (cashBillDetail == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cashBillDetail);
+            var CTHoaDon = Session["CashBillDetail"] as List<CashBillDetail>;
+            CTHoaDon = CTHoaDon.Except(CTHoaDon.Where(c => c.ID == id)).ToList();
+            Session["CashBillDetail"] = CTHoaDon;
+            return RedirectToAction("Create", "ManageCashBill");
         }
 
         // POST: Employee/CashBillDetails/Delete/5

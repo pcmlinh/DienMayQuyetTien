@@ -12,85 +12,93 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        
-        <h4>Thông tin hóa đơn</h4>
-        <hr />
-        @Html.ValidationSummary(true)
+<div class="form-horizontal">
 
-        <div class="row">
-               
-                <div class="col-md-10" style="margin-bottom:30px; margin-left:15px;">
-                    Ngày lập hóa đơn: <em>@DateTime.Now</em>
+    <h4>Thông tin hóa đơn</h4>
+    <hr />
+    @Html.ValidationSummary(true)
 
-                </div>
-            <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.CustomerName, "Tên khách hàng", new { @class = "control-label col-md-6" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CustomerName)
-                    @Html.ValidationMessageFor(model => model.CustomerName)
-                </div>
-            </div>
+    <div class="row">
 
-            <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.PhoneNumber, "Số điện thoại", new { @class = "control-label col-md-6" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PhoneNumber)
-                    @Html.ValidationMessageFor(model => model.PhoneNumber)
-                </div>
+        <div class="col-md-10" style="margin-bottom:30px; margin-left:15px;">
+            Ngày lập hóa đơn: <em>@DateTime.Now</em>
+
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.CustomerName, "Tên khách hàng", new { @class = "control-label col-md-6" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.CustomerName)
+                @Html.ValidationMessageFor(model => model.CustomerName)
             </div>
         </div>
 
-        <div class="row">
-            <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.Address, "Địa chỉ", new { @class = "control-label col-md-6" })
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Address)
-                    @Html.ValidationMessageFor(model => model.Address)
-                </div>
-            </div>
-
-            <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.Note, "Ghi chú", new { @class = "control-label col-md-6" })
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Note)
-                    @Html.ValidationMessageFor(model => model.Note)
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Lưu hóa đơn" class="btn btn-default" />
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.PhoneNumber, "Số điện thoại", new { @class = "control-label col-md-6" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.PhoneNumber)
+                @Html.ValidationMessageFor(model => model.PhoneNumber)
             </div>
         </div>
     </div>
-}
 
-@if (Session["CashBill"] != null)
-{
-
-    @Html.Action("Create", "CashBillDetails")
-    @Html.Action("Index", "CashBillDetails")
-
-    <br /><br />
-    using (Html.BeginForm("Create2", "ManageCashBill"))
-    {
-        @Html.AntiForgeryToken()
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Lập hóa đơn" class="btn btn-primary" />
+    <div class="row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.Address, "Địa chỉ", new { @class = "control-label col-md-6" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.Address)
+                @Html.ValidationMessageFor(model => model.Address)
             </div>
         </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.Shipper, "Người giao hàng", new { @class = "control-label col-md-6" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.Shipper)
+                @Html.ValidationMessageFor(model => model.Shipper)
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.Note, "Ghi chú", new { @class = "control-label col-md-6" })
+            <div class="col-md-12">
+                @Html.TextAreaFor(model => model.Note)
+                @Html.ValidationMessageFor(model => model.Note)
+            </div>
+        </div>
+    </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu hóa đơn" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
     }
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    @if (Session["CashBill"] != null)
+    {
 
-@section Scripts {
-    <script>
+        @Html.Action("Create", "CashBillDetails")
+        @Html.Action("Index", "CashBillDetails")
+
+        <br /><br />
+        using (Html.BeginForm("Create2", "ManageCashBill"))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Lập hóa đơn" class="btn btn-primary" />
+                </div>
+            </div>
+        }
+    }
+
+    <div>
+        @Html.ActionLink("Trở về danh sách", "Index")
+    </div>
+
+    @section Scripts {
+        <script>
     $('#ProductID').change(function () {
         var url = '@Url.Action("SalePrice", "CashBillDetails")';
         url = url + '?ProductID=' + $(this).val();
@@ -98,5 +106,5 @@
             $('#SalePrice').val(data);
         });
     });
-    </script>
-}
+        </script>
+    }

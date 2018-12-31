@@ -10,38 +10,44 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Quantity)
+            Mã sản phẩm
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SalePrice)
+            Tên sản phẩm
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CashBill.BillCode)
+            Số lượng
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Product.ProductCode)
+            Giá bán
         </th>
+        <th>
+           Tổng
+        </th>
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SalePrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CashBill.BillCode)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Product.ProductCode)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            @Html.DisplayFor(modelItem => item.Product.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @String.Format("{0:0,0}", item.SalePrice)
+        </td>
+        <td>
+            @String.Format("{0:0,0}", item.Product.SalePrice* item.Quantity)
+        </td>
+
+        <td>
+            <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "CashBillDetails", new { id = item.ID })'"><i class="fa fa-trash"></i></button>
         </td>
     </tr>
 }

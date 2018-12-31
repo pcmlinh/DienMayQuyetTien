@@ -5,7 +5,7 @@
     Layout = "~/Areas/Employee/Views/Shared/_EmpLayout.cshtml";
 }
 
-<h2>Thêm Tin Tức</h2>
+
 
 
 @using (Html.BeginForm("Create", "ManageNews", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -13,60 +13,61 @@
     @Html.AntiForgeryToken()
 
 
-    <div class="form-horizontal" align="center" style="  border: 1px solid;
-         padding: 10px;
-         box-shadow: 5px 5px #888888;;border-radius: 15px; width:600p;">
+<div class="form-control" align="center" style="  border: 1px solid;
+            padding: 10px;
+                box-shadow: 5px 5px #888888;border-radius: 15px; width:600px;">
+    <h2>Thêm Tin Tức</h2>
+    <hr />
 
-        <hr />
+    <div class="form-group">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, "Tiêu Ðề", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title)
-            </div>
+        @Html.LabelFor(model => model.Title, "Tiêu Ðề", htmlAttributes: new { @class = "control-label col-md-6" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Title)
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Img, "Hình Ảnh", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBox("ImageFile", null, new { type = "file", accept = "image/gif, image/jpeg, image/png", onchange = "readURL(this);", @class = "form-control" })
-                @Html.ValidationMessage("ImageFile")
-                <img id="HinhTT" src="" style="width:350px;height:150px;margin-top:15px" />
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Img, "Hình Ảnh", htmlAttributes: new { @class = "control-label col-md-6" })
+        <div class="col-md-10">
+            @Html.TextBox("ImageFile", null, new { type = "file", accept = "image/gif, image/jpeg, image/png", onchange = "readURL(this);", @class = "form-control" })
+            @Html.ValidationMessage("ImageFile")
+            <img id="HinhTT" src="" style="width:350px;height:150px;margin-top:15px" />
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Infor, "Thông Tin", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Infor, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Infor)
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Infor, "Thông Tin", htmlAttributes: new { @class = "control-label col-md-6" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Infor, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Infor)
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Check, "Trạng Thái", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Check)
-                    @Html.ValidationMessageFor(model => model.Check, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-success" />
-                &nbsp;
-                @Html.ActionLink("Cancel", "Index", "ManageNews", null, new { @class = "btn btn-danger" })
-
+    <div class="form-group">
+        @Html.LabelFor(model => model.Check, "Trạng Thái", htmlAttributes: new { @class = "control-label col-md-6" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Check)
+                @Html.ValidationMessageFor(model => model.Check, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Thêm" class="btn btn-success" />
+            &nbsp;
+            @Html.ActionLink("Hủy", "Index", "ManageNews", null, new { @class = "btn btn-danger" })
+
+        </div>
+    </div>
+</div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Trở về danh sách", "Index")
 </div>
 
 @section Scripts {

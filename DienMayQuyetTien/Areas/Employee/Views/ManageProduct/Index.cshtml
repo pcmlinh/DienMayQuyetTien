@@ -56,7 +56,7 @@
                                 @Html.DisplayFor(modelItem => item.ProductName)
                             </td>
                             <td>
-                                @String.Format("{0:0,0}",item.SalePrice)
+                                @String.Format("{0:0,0}", item.SalePrice)
                             </td>
                             <td>
                                 @String.Format("{0:0,0}", item.OriginPrice)
@@ -68,7 +68,7 @@
                                 @Html.DisplayFor(modelItem => item.Quantity)
                             </td>
                             <td>
-                                <img src="/Images/@item.Avatar" class="img-responsive" width="120px"/> 
+                                <img src="/Images/@item.Avatar" class="img-responsive" width="120px" />
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Status)
@@ -86,6 +86,7 @@
             </table>
         </div>
     </div>
-    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    <div class="card-footer small text-muted"></div>
+
 </div>
 

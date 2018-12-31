@@ -5,84 +5,133 @@
     Layout = "~/Areas/Employee/Views/Shared/_EmpLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Quản lí hóa đơn trả góp</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "ManageInstallmentBill")'"><i class="fa fa-plus"></i> Thêm hóa đơn</button>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BillCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Shipper)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Note)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Method)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Period)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GrandTotal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Taken)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Remain)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer.CustomerCode)
-        </th>
-        <th></th>
-    </tr>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Bảng hóa đơn trả góp
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead align="center">
+                    <tr>
+                        <th>
+                            Mã hóa đơn
+                        </th>
+                        <th>
+                            Ngày giờ
+                        </th>
+                        <th>
+                            Người giao hàng
+                        </th>
+                        <th>
+                            Ghi chú
+                        </th>
+                        <th>
+                            Phương thức trả góp
+                        </th>
+                        <th>
+                            Thời hạn trả góp
+                        </th>
+                        <th>
+                            Tổng tiền(VNĐ)
+                        </th>
+                        <th>
+                            Đã trả(VNĐ)
+                        </th>
+                        <th>
+                            Còn lại(VNĐ)
+                        </th>
+                        <th>
+                            Số CMND khách hàng
+                        </th>
+                        <th>Tùy chọn</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>
+                            Mã hóa đơn
+                        </th>
+                        <th>
+                            Ngày giờ
+                        </th>
+                        <th>
+                            Người giao hàng
+                        </th>
+                        <th>
+                            Ghi chú
+                        </th>
+                        <th>
+                            Phương thức trả góp
+                        </th>
+                        <th>
+                            Thời hạn trả góp
+                        </th>
+                        <th>
+                            Tổng tiền(VNĐ)
+                        </th>
+                        <th>
+                            Đã trả(VNĐ)
+                        </th>
+                        <th>
+                            Còn lại(VNĐ)
+                        </th>
+                        <th>
+                            Số CMND khách hàng
+                        </th>
+                        <th>Tùy chọn</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BillCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Shipper)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Note)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Method)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Period)
+                            </td>
+                            <td>
+                                @String.Format("{0:0,0}", item.GrandTotal)
+                            </td>
+                            <td>
+                                @String.Format("{0:0,0}", item.Taken)
+                            </td>
+                            <td>
+                                @String.Format("{0:0,0}", item.Remain)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Customer.CustomerCode)
+                            </td>
+                            <td>
+                                <button class="btn btn-info" onclick="location.href='@Url.Action("Edit", "ManageInstallmentBill", new { id = item.ID })'"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-danger" onclick="location.href='@Url.Action("Print", "ManageInstallmentBill", new { id = item.ID })'"><i class="fa fa-print"></i></button>
+                            </td>
+                        </tr>
+                    }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BillCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Shipper)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Note)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Method)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Period)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GrandTotal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Taken)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Remain)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer.CustomerCode)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted"></div>
 
-</table>
+</div>

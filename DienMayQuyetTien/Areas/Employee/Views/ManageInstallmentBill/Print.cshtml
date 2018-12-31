@@ -177,7 +177,7 @@
                 <div class=" offset-1 col-5">
                     <div class="to text-left">
                         <h5 class="effect-color pt-4">Thông tin khách hàng:</h5>
-                        <h6 class="theme-color"><strong>Tên khách hàng: @Model.Customer.CustomerName</strong></h6>
+                        <p>Tên khách hàng: @Model.Customer.CustomerName</p>
                         <p>Địa chỉ: @Model.Customer.Address</p>
                         <p>Số điện thoại: @Model.Customer.PhoneNumber</p>
                     </div>
@@ -186,25 +186,25 @@
                 <div class="col-6 pr-5">
                     <table class="table table-borderless text-right">
                         <tbody>
-                            <tr>
-                                <th scope="row">Subtotal</th>
-                                <td>75 <span class="currency">&euro;</span></td>
+                            <tr align="left">
+                                <th width="250px">Người giao hàng</th>
+                                <td>@Model.Shipper</td>
                             </tr>
-                            <tr>
-                                <th scope="row">Taxes*</th>
-                                <td>11,25 <span class="currency">&euro;</span></td>
+                            <tr align="left">
+                                <th>Ghi chú</th>
+                                <td>@Model.Note</td>
                             </tr>
-                            <tr>
-                                <th scope="row">Discounts</th>
-                                <td>7,5 <span class="currency">&euro;</span></td>
+                            <tr align="left">
+                                <th>Tổng tiền</th>
+                                <td>@String.Format("{0:0,0}", Model.GrandTotal) VNĐ</td>
                             </tr>
-                            <tr>
-                                <th scope="row">Shipping</th>
-                                <td><span class="currency">&euro;</span> 10,25</td>
+                            <tr align="left">
+                                <th>Đã đưa</th>
+                                <td>@String.Format("{0:0,0}", Model.Taken) VNĐ</td>
                             </tr>
-                            <tr class="last-row">
-                                <th scope="row"><h4>Total</h4></th>
-                                <td><h4><span class="currency">&euro;</span> 90,25</h4></td>
+                            <tr class="last-row" align="left">
+                                <th><h4>Còn lại</h4></th>
+                                <td><h4>@String.Format("{0:0,0}", Model.Remain) VNĐ</h4></td>
                             </tr>
                         </tbody>
                     </table>
