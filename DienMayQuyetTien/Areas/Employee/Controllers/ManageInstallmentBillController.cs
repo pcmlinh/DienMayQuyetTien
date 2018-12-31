@@ -15,11 +15,10 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
     public class ManageInstallmentBillController : Controller
     {
         private DmQT07Entities1 db = new DmQT07Entities1();
-        public int setSessionTaken(int taken)
-        {
-            Session["Taken"] = taken;
-            return (int)Session["Taken"];
-        }
+        
+
+
+        
 
         // GET: Employee/ManageInstallmentBill
         public ActionResult Index()
@@ -32,6 +31,11 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
             {
                 return RedirectToAction("Login", "Login", new { area = "" });
             }
+        }
+        public int setSessionTaken(int taken)
+        {
+            Session["Taken"] = taken;
+            return (int)Session["Taken"];
         }
 
         // GET: Employee/ManageInstallmentBill/Details/5
@@ -61,8 +65,14 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
         public ActionResult Create()
         {
             if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
-            {          
-                ViewBag.CustomerID = new SelectList(db.Customers, "ID", "CustomerCode");
+            {
+
+                ViewBag.CustomerID = new SelectList((from s in db.Customers
+                select new
+                {
+                    ID = s.ID,
+                    Info = s.CustomerName + " - " + s.CustomerCode
+                }),"ID","Info", null);
 
                 return View(Session["InstallmentBill"]);
             }
@@ -82,7 +92,12 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
             
             if (ModelState.IsValid)
             {
-                ViewBag.CustomerID = new SelectList(db.Customers, "ID", "CustomerCode", model.CustomerID);
+                ViewBag.CustomerID = new SelectList((from s in db.Customers
+                                                     select new
+                                                     {
+                                                         ID = s.ID,
+                                                         Info = s.CustomerName + " - " + s.CustomerCode
+                                                     }), "ID", "Info", model.CustomerID);
                 Session["InstallmentBill"] = model;
             }
 
@@ -109,7 +124,6 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
                     installmentBill.GrandTotal = (int)Session["Total"];
                     installmentBill.Taken = (int)Session["Taken"];
                     installmentBill.Remain = ((int)Session["Total"] - (int)Session["Taken"]);
-                    ViewBag.CustomerID = new SelectList(db.Customers, "ID", "CustomerCode", installmentBill.CustomerID);
                     db.InstallmentBills.Add(installmentBill);
                     db.SaveChanges();
 
