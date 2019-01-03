@@ -24,7 +24,7 @@ namespace DienMayQuyetTien.Models
         public int ID { get; set; }
         public string BillCode { get; set; }
 
-        [StringLength(100, ErrorMessage = "Ten khách hàng không quá 100 ký tự")]
+        [StringLength(100, ErrorMessage = "Tên khách hàng không quá 100 ký tự")]
         [Required(ErrorMessage = "Vui lòng nhập tên khách hàng")]
         public string CustomerName { get; set; }
 

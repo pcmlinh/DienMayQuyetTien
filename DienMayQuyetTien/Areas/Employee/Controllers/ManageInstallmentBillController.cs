@@ -14,11 +14,7 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
 {
     public class ManageInstallmentBillController : Controller
     {
-        private DmQT07Entities1 db = new DmQT07Entities1();
-        
-
-
-        
+        private DmQT07Entities1 db = new DmQT07Entities1();      
 
         // GET: Employee/ManageInstallmentBill
         public ActionResult Index()
@@ -66,14 +62,8 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
         {
             if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
             {
-
-                ViewBag.CustomerID = new SelectList((from s in db.Customers
-                select new
-                {
-                    ID = s.ID,
-                    Info = s.CustomerName + " - " + s.CustomerCode
-                }),"ID","Info", null);
-
+               
+                ViewBag.CustomerID = new SelectList((from s in db.Customers select new { ID = s.ID, Info = s.CustomerCode + " - " + s.CustomerName }), "ID", "Info", null);
                 return View(Session["InstallmentBill"]);
             }
             else
@@ -89,21 +79,16 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(InstallmentBill model)
         {
-            
+            //CheckInstallmentBill(model);
             if (ModelState.IsValid)
             {
-                ViewBag.CustomerID = new SelectList((from s in db.Customers
-                                                     select new
-                                                     {
-                                                         ID = s.ID,
-                                                         Info = s.CustomerName + " - " + s.CustomerCode
-                                                     }), "ID", "Info", model.CustomerID);
+                
                 Session["InstallmentBill"] = model;
             }
 
             if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
             {
-                
+                ViewBag.CustomerID = new SelectList((from s in db.Customers select new { ID = s.ID, Info = s.CustomerCode + " - " + s.CustomerName }), "ID", "Info", null);
                 return View(model);
             }
             else
@@ -203,6 +188,14 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
             {
                 return RedirectToAction("Login", "Login", new { area = "" });
             }
+        }
+        private void CheckInstallmentBill(InstallmentBill model)
+        {
+
+            if (model.Method.Length <= 0)
+                ModelState.AddModelError("Method", "Độ dài lớn hơn 0");
+            if (model.Period <= 0)
+                ModelState.AddModelError("Period", "Thời hạn trả góp phải lớn hơn 0");
         }
 
         public ActionResult Print(int id)

@@ -23,26 +23,28 @@ namespace DienMayQuyetTien.Models
     
         public int ID { get; set; }
         public string BillCode { get; set; }
+
+        //[Required(ErrorMessage = "Vui lòng nhập Phương thức thanh toán")]
         public int CustomerID { get; set; }
 
         public System.DateTime Date { get; set; }
-
-        [StringLength(100, MinimumLength = 0, ErrorMessage = "Tên người giao hàng không được vượt quá 100 kí tự")]
+        //[Required(ErrorMessage = "Vui lòng ")]
+        //[StringLength(100, MinimumLength = 0, ErrorMessage = "Tên người giao hàng không được vượt quá 100 kí tự")]
         public string Shipper { get; set; }
-
-        [StringLength(255, MinimumLength = 0, ErrorMessage = "Ghi chú không được vượt quá 255 kí tự")]
+        //Required(ErrorMessage = "Vui lòng nhập Phương thức thanh toán")]
+        //[StringLength(255, MinimumLength = 0, ErrorMessage = "Ghi chú không được vượt quá 255 kí tự")]
         public string Note { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng nhập Phương thức thanh toán")]
-        [StringLength(10, MinimumLength = 0, ErrorMessage = "Phương thức thanh toán không được vượt quá 10 kí tự")]
+        //[Required(ErrorMessage = "Vui lòng nhập Phương thức thanh toán")]
+        //[StringLength(10, MinimumLength = 0, ErrorMessage = "Phương thức thanh toán không được vượt quá 10 kí tự")]
         public string Method { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng nhập Thời gian trả góp")]
+        //[Required(ErrorMessage = "Vui lòng nhập Thời gian trả góp")]
         public int Period { get; set; }
 
         public int GrandTotal { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng nhập số tiền đã đưa")]
+        //[Required(ErrorMessage = "Vui lòng nhập số tiền đã đưa")]
         public int Taken { get; set; }
 
         //[Required(ErrorMessage = "Vui lòng nhập số tiền cần trả góp")]

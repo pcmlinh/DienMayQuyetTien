@@ -163,8 +163,8 @@
                                 <th scope="row">@i</th>
                                 <td class="item">@Html.DisplayFor(modelItem => item.Product.ProductName)</td>
                                 <td>@string.Format("{0:0,0} VND", item.Product.SalePrice)</td>
-                                <td>@Html.DisplayFor(modelItem => item.Product.Quantity)</td>
-                                <td>@string.Format("{0:0,0} VND", item.Product.SalePrice * item.Product.Quantity)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                                <td>@string.Format("{0:0,0} VND", item.Product.InstallmentPrice * item.Quantity)</td>
                             </tr>
                             i = i + 1;
                         }

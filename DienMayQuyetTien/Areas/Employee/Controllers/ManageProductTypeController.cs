@@ -19,7 +19,8 @@ namespace DienMayQuyetTien.Areas.Employee.Controllers
         {
             if (Session["username"] != null && Session["authority"].ToString() == "Nhân viên bán hàng")
             {
-                return View(db.ProductTypes.ToList());
+                var product = db.Products.OrderByDescending(x => x.ID).ToList();
+                return View(product);
             }
             else
             {
